@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Benchmark Banking</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/all.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/datatables.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/jquery.dataTables.css' %}" />
+</head>
+<body>
+    <!--Navbar-->
+    <div class="navbar-fixed">
+        <nav class="grey darken-3">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="{% url 'index' %}" class="brand-logo">MEGA</a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="{% url 'bank_list' %}"><i class="fas fa-briefcase left"></i>Company</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'branch_list' %}"><i class="fas fa-building left"></i>Branch</a>
+                        </li>
+                        <li>
+                            <a href="#search"><i class="fas fa-search left"></i>Search</a>
+                        </li>
+                        <li>
+                            <a href="#user">
+                                <img class="circle" src="{% static 'images/raden.jpg' %}" height="60px">                                
+                            </a>                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--Sidenav-->
+    <ul class="sidenav" id="mobile-nav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                  <img src="{% static 'images/office.jpeg' %}" style="height:210px; width:320px">
+                </div>
+                <a href="#user"><img class="circle" src="{% static 'images/raden.jpg' %}"></a>
+                <a href="#name"><span class="black-text name">Raden Ramadista</span></a>
+                <a href="#email"><span class="black-text email">raden.ramadista@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a class="waves-effect" href="#!"><i class="fas fa-chart-pie"></i>Dashboard</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Benchmark</a></li>
+        <li><a class="waves-effect" href="{% url 'bank_list' %}"><i class="fas fa-briefcase"></i>Company</a></li>
+        <li><a class="waves-effect" href="{% url 'branch_list' %}"><i class="fas fa-building"></i>Branch</a></li>
+        <li><a class="waves-effect" href="#!"><i class="fab fa-facebook"></i>Others</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect waves-light btn-small light-blue">button</a></li>
+    </ul>
+    
+    {% block content %}
+    {% endblock %}
+    
+    <!--Footer-->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5>Footer Content</h5>
+                    <p>You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5>Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright grey darken-3">
+            <div class="container">
+                © 2018 Raden Ramadista
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--JavaScript-->
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'js/chart.bundle.js' %}"></script>
+    <script src="{% static 'js/datatables.js' %}"></script>
+    <script src="{% static 'js/jquerydataTables.js' %}"></script>
+
+    <!--MaterializeJS-->
+    <script>
+        //Sidenav
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, options);
+        });
+
+        const sideNav = document.querySelector('.sidenav');
+        M.Sidenav.init(sideNav, {});
+
+        //Parallax
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.parallax');
+            var instances = M.Parallax.init(elems, options);
+        });
+
+        const parallax = document.querySelectorAll('.parallax');
+        M.Parallax.init(parallax, {});
+    </script>
+
+    <!--ChartJS-->
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+                datasets: [{
+                    label: '# of Employees',
+                    data: [13358, 13181, 11923, 9864, 8660, 8986, 8574, 8647],
+                    backgroundColor: [
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(255, 159, 64, 0.8)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <!--DataTables-->
+    <script>
+        $(document).ready(function() {
+            $('#mytable').DataTable();
+        })
+    </script>
+</body>
+</html>
