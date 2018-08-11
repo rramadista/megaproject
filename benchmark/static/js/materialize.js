@@ -8152,6 +8152,7 @@ $jscomp.polyfill = function (e, r, p, m) {
       }
       $(this).closest('.chip').remove();
     });
+
   });
 })(cash);
 ;(function ($) {

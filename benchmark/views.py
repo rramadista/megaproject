@@ -11,8 +11,14 @@ def index(request):
 def gchart(request):
     return render(request, 'benchmark/gchart.html', {})
 
+def dashboard(request):
+    return render(request, 'benchmark/dashboard.html', {})
+
 def bank_list(request):
     return render(request, 'benchmark/bank_list.html', {})
 
 def branch_list(request):
     return render(request, 'benchmark/branch_list.html', {})
+
+def mount_orange_school(request):
+    return render(request, 'benchmark/mount_orange_school.html', {})
