@@ -1,0 +1,48 @@
+{% extends 'benchmark/base.html' %} {% load static %} {% block content %}
+<!--Section-->
+<section>
+    <div class="container">
+        <ul class="collapsible expandable">
+            <li>
+                <div class="collapsible-header">
+                    <h2>
+                        <a href="#">PERFORMANCE
+                            <b>ANALYTICS</b>
+                        </a>
+                    </h2>
+                </div>
+                <div class="collapsible-body">
+                    <table class="highlight">
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-calculator"></i> Provide systematic computational analysis of data or statistics</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-code-branch"></i> Connect multiple data points</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-lightbulb"></i> Provide insights</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-bullseye"></i> Drive strategy</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-binoculars"></i> State the past, present and predict the future</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-eye"></i> Visualize patterns and trends</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="card-large">
+                <div class="card-content">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

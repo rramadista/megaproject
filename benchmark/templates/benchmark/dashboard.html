@@ -2,16 +2,110 @@
 <!--Section-->
 <section>
     <div class="container">
-        <h2>
-            <a href="#">PERFORMANCE
-                <b>DASHBOARD</b>
-            </a>
-        </h2>
-        <div class="row">
-            <div class="card-large">
-                <div class="card-content">
-                    <canvas id="myChart"></canvas>
+
+
+        <ul class="collapsible expandable">
+            <li>
+                <div class="collapsible-header">
+                    <h2>
+                        <a href="#">PERFORMANCE
+                            <b>DASHBOARD</b>
+                        </a>
+                    </h2>
                 </div>
+                <div class="collapsible-body">
+                    <table class="highlight">
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-ruler"></i> Provide a standard system of measurement</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-map-pin"></i> Measure single data points</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-info"></i> Provide information</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-cogs"></i> Guide tactics and operations</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-calendar"></i> State the past and present</td>
+                        </tr>
+                        <tr>
+                            <td class="grey-text"><i class="fas fa-table"></i> Provide tabular outputs of counts and rates</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </ul>
+
+        <div id="card-stats">
+            <div class="row">
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content amber white-text">
+                            <p class="card-stats-title">
+                                <i class="fas fa-user-plus"></i> New-to-Bank</p>
+                            <h4 class="card-stats-number">566</h4>
+                            <p class="card-stats-compare">
+                                <i class="fas fa-chevron-up"></i> 15%
+                                <span class="green-text text-lighten-5">from yesterday</span>
+                            </p>
+                        </div>
+                        <div class="card-action amber darken-2">
+                            <div id="clients-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content orange white-text">
+                            <p class="card-stats-title">
+                                <i class="fas fa-dollar-sign"></i> Fee Based Income</p>
+                            <h4 class="card-stats-number">$8990.63</h4>
+                            <p class="card-stats-compare">
+                                <i class="fas fa-chevron-up"></i> 70%
+                                <span class="purple-text text-lighten-5">last month</span>
+                            </p>
+                        </div>
+                        <div class="card-action orange darken-2">
+                            <div id="sales-compositebar"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content deep-orange white-text">
+                            <p class="card-stats-title">
+                                <i class="fas fa-chart-line"></i> Month-to-Date Profit</p>
+                            <h4 class="card-stats-number">$806.52</h4>
+                            <p class="card-stats-compare">
+                                <i class="fas fa-chevron-up"></i> 80%
+                                <span class="blue-grey-text text-lighten-5">from last month</span>
+                            </p>
+                        </div>
+                        <div class="card-action deep-orange darken-2">
+                            <div id="profit-tristate"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content blue-grey lighten-2 white-text">
+                            <p class="card-stats-title">
+                                <i class="fas fa-file"></i> New Invoice</p>
+                            <h4 class="card-stats-number">1806</h4>
+                            <p class="card-stats-compare">
+                                <i class="fas fa-chevron-down"></i> 3%
+                                <span class="deep-purple-text text-lighten-5">from last month</span>
+                            </p>
+                        </div>
+                        <div class="card-action blue-grey darken-2">
+                            <div id="invoice-line"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

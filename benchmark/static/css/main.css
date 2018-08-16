@@ -5,3 +5,62 @@
 .nav-wrapper {
     padding-left: 20px;
 }
+
+table.dataTable td.focus {
+    box-shadow: inset 0 0 1px 2px #ff6f00 !important;
+}
+
+.btn,
+.btn-large,
+.btn-small {
+    background-color: #616161 !important;
+}
+
+h1 a,
+h2 a {
+    color: #424242 !important;
+}
+
+h3 b {
+    text-transform: uppercase
+}
+
+.page-footer {
+    background-color: #ff6f00 !important;
+}
+
+#dropdown {
+    color: #616161 !important;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #ff6f00 !important;
+    -webkit-box-shadow: 0 1px 0 0 #ff6f00 !important;
+    box-shadow: 0 1px 0 0 #ff6f00 !important;
+}
+
+/* Data Table */
+
+.dataTables_filter input {
+    color: #616161;
+}
+
+.dataTables_filter label {
+    color: #616161;
+}
+
+.intro {
+    background-size: contain;
+}

@@ -1,0 +1,344 @@
+{% extends 'benchmark/base.html' %} {% load static %} {% block content %}
+
+<div class="card intro">
+    <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{% static 'images/architecture-bay-bridge-356830-resize.jpg' %}" alt="company background">
+    </div>
+    <div class="card-content lighten-2">
+        <div class="row">
+            <div class="col s3 offset-s1">
+                <h4 class="card-title grey-text text-darken-4">{{ bank.bank_name }}</h4>
+                <p class="medium-small grey-text">Private Bank</p>
+            </div>
+            <div class="col s2 center-align hide-on-small-only">
+                <h4 class="card-title grey-text text-darken-4">10+</h4>
+                <p class="medium-small grey-text">Work Experience</p>
+            </div>
+            <div class="col s2 center-align hide-on-small-only">
+                <h4 class="card-title grey-text text-darken-4">3</h4>
+                <p class="medium-small grey-text">Bank BUKU</p>
+            </div>
+            <div class="col s2 center-align hide-on-small-only">
+                <h4 class="card-title grey-text text-darken-4">Rp 50 T</h4>
+                <p class="medium-small grey-text">Total Asset</p>
+            </div>
+            <div class="col s1 right-align">
+                <a class="btn-floating activator waves-effect waves-light grey darken-2 right">
+                    <i class="fas fa-address-card"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-reveal">
+        <p>
+            <span class="card-title grey-text text-darken-4">{{ bank.bank_name }}
+                <i class="fas fa-times grey-text right"></i>
+            </span>
+        </p>
+        <p>
+            <i class="fas fa-address-book deep-orange-text text-darken-2"></i> Dummy Address
+            <br>Dummy Address Line 2</p>
+        <p>
+            <i class="fas fa-phone deep-orange-text text-darken-2"></i> Dummy Phone</p>
+        <p>
+            <i class="fas fa-envelope deep-orange-text text-darken-2"></i> Dummy Email</p>
+        <p>
+            <i class="fas fa-barcode deep-orange-text text-darken-2"></i> {{ bank.swift_code }}</p>
+        <p>
+            <i class="fas fa-globe-americas deep-orange-text text-darken-2"></i> {{ bank.website }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <h3>
+        <b>{{ bank.institution_name }}</b>
+    </h3>
+    <ul class="collapsible expandable">
+        <li class="active">
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-university"></i>INSTITUTIONAL DATA</h5>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <div class="col s12 m12 l9">
+                        <table class="highlight">
+                            <tr>
+                                <td width="250" class="grey-text">Establishment Date</td>
+                                <td>{{ bank.est_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Foreign Exchange Operations Date</td>
+                                <td>{{ bank.forex_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Listing Date</td>
+                                <td>{{ bank.listing_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Tax Identification Number</td>
+                                <td>{{ bank.tin }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col s12 m6 l3 center hide-on-med-and-down">
+                        <img src="{% static 'images/logo/Bank_Mega_logo.png' %}" alt="" class="responsive-image" width="80%">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-chart-bar"></i>KEY FIGURES</h5>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="btn">2017</div>
+                        <table class="highlight">
+                            <tr>
+                                <td width="250" class="grey-text">Total Asset</td>
+                                <td>{{ bank.est_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Profit Before Tax</td>
+                                <td>{{ bank.forex_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Funding</td>
+                                <td>{{ bank.listing_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Lending</td>
+                                <td>{{ bank.tin }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Card Title</span>
+                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient
+                                    because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-building"></i>OFFICES</h5>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <table class="highlight responsive-table">
+                            <tr>
+                                <td width="250" class="grey-text">Non Operational Head Office</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Regional Offices</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Branch Offices</td>
+                                <td>44</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Sub Branch Offices</td>
+                                <td>298</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Cash Offices</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Functional Offices</td>
+                                <td>3</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col s12 m6">
+                        <table class="highlight">
+                            <tr>
+                                <td width="250" class="grey-text">Payment Points</td>
+                                <td>650</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Mobile Cash</td>
+                                <td>650</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Automated Teller Machines</td>
+                                <td>650</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Commercial Bank Office in Overseas</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Overseas Branch Offices</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td class="grey-text">Overseas Sub Branch Offices</td>
+                                <td>6</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-user-tie"></i>EXECUTIVES & PEOPLE</h5>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_KT.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Kostaman Thayib</b>
+                                    </span>
+                                    <br>President Director
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_MM.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Martin Mulwanto</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_DZ.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Diza Larentie</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_MD.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Madi Darmadi</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_IE.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Indivara Erni</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_YL.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Yuni Lastianto</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_YB.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>YB Hariantono</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card-panel" height="150">
+                            <div class="row valign-wrapper">
+                                <div class="col m4">
+                                    <img src="{% static 'images/exec/MEGA_GT.png' %}" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col m8">
+                                    <span class="deep-orange-text text-darken-4">
+                                        <b>Guntur Trihandono</b>
+                                    </span>
+                                    <br>Director
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-handshake"></i>SHAREHOLDERS</h5>
+            </div>
+            <div class="collapsible-body">
+                <i class="flag-icon flag-icon-id"></i>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis consectetur non quam reprehenderit fugiat.
+                    Quae labore beatae id, nulla debitis laudantium molestiae esse natus voluptates, veritatis modi, praesentium
+                    maxime blanditiis.</span>
+            </div>
+        </li>
+    </ul>
+    </div>
+    {% endblock %}
