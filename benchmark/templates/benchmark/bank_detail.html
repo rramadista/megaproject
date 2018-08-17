@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col s3 offset-s1">
                 <h4 class="card-title grey-text text-darken-4">{{ bank.bank_name }}</h4>
-                <p class="medium-small grey-text">Private Bank</p>
+                <p class="medium-small grey-text">{{ bank.get_category_display }}</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
                 <h4 class="card-title grey-text text-darken-4">1,000+</h4>
                 <p class="medium-small grey-text">Headcount Numbers</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
-                <h4 class="card-title grey-text text-darken-4">3</h4>
+                <h4 class="card-title grey-text text-darken-4">{{ bank.group }}</h4>
                 <p class="medium-small grey-text">Bank BUKU</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
@@ -40,8 +40,6 @@
             <br>Dummy Address Line 2</p>
         <p>
             <i class="fas fa-phone deep-orange-text text-darken-2"></i> Dummy Phone</p>
-        <p>
-            <i class="fas fa-envelope deep-orange-text text-darken-2"></i> Dummy Email</p>
         <p>
             <i class="fas fa-barcode deep-orange-text text-darken-2"></i> {{ bank.swift_code }}</p>
         <p>
@@ -82,7 +80,7 @@
                         </table>
                     </div>
                     <div class="col s12 m6 l3 center hide-on-med-and-down">
-                        <img src="{% static 'images/logo/Bank_Mega_logo.png' %}" alt="" class="responsive-image" width="80%">
+                        <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%">
                     </div>
                 </div>
             </div>
