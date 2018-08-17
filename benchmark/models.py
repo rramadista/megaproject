@@ -16,13 +16,14 @@ class Bank(models.Model):
     def __str__(self):
         return self.bank_name
 
-class Financial(models.Model):
+class Indicator(models.Model):
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
-    period = models.ForeignKey('benchmark.DimDate', on_delete=models.PROTECT)
+    period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
     pbt = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     funding = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     lending = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     asset = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
+    headcount = models.IntegerField()
 
     def __str__(self):
         return '%s %d' % (self.period, self.bank)
