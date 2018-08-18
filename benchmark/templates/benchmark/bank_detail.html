@@ -53,7 +53,6 @@
             <b>{{ bank.institution_name }}</b>
         </a>
     </h3>
-    {{ bank }} {% for indicator in bank.indicator_set.all %} {{ indicator.period }} {{ indicator.asset }} {% endfor %}
     <ul class="collapsible expandable">
         <li class="active">
             <div class="collapsible-header">
@@ -191,8 +190,8 @@
             </div>
             <div class="collapsible-body">
 
-                {% comment %} Grid {% endcomment %}
-                {% comment %} <div class="row">
+                {% comment %} Grid {% endcomment %} {% comment %}
+                <div class="row">
                     <div class="col s12 m6 l3">
                         <div class="card-panel" height="150">
                             <div class="row valign-wrapper">
@@ -313,9 +312,7 @@
                             </div>
                         </div>
                     </div>
-                </div> {% endcomment %}
-
-                {% comment %} FlexBox {% endcomment %}
+                </div> {% endcomment %} {% comment %} FlexBox {% endcomment %}
                 <div class="exec-container">
                     <div class="exec-box">
                         <div class="exec-item">
@@ -427,7 +424,98 @@
                     <i class="fas fa-hand-holding-usd"></i>TOTAL REWARDS</h5>
             </div>
             <div class="collapsible-body">
-                Total Rewards
+                <table class="highlight truncate">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th width="20%">Definitions</th>
+                            <th width="20%">Elements</th>
+                            <th width="20%">Common Name</th>
+                            <th width="20%">Value</th>
+                            <th width="20%">Eligibility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5" width="1" class="grey"></td>
+                            <td rowspan="4" width="1" class="deep-orange"></td>
+                            <td rowspan="3" width="1" class="orange"></td>
+                            <td rowspan="2" width="1" class="amber"></td>
+                            <td rowspan="2">Total Cash</td>
+                            <td>Guaranted Cash</td>
+                            <td>
+                                <ul>
+                                    <li>Basic Salary</li>
+                                    <li>Fixed Payment</li>
+                                    <li>Near Cash Allowances</li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Annual Variable</td>
+                            <td>
+                                <ul>
+                                    <li>Sales Commission</li>
+                                    <li>Annual Bonus</li>
+                                    <li>Annual Incentive</li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Total Direct Compensation</td>
+                            <td>Long Term Incentives</td>
+                            <td>
+                                <ul>
+                                    <li>Stock Options</li>
+                                    <li>Long Term Cash Plans</li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total Remuneration</td>
+                            <td>Benefits</td>
+                            <td>
+                                <ul>
+                                    <li>Retirement Provision</li>
+                                    <li>Health/Medical Insurance</li>
+                                    <li>Death/Disability Insurance</li>
+                                    <li>Paid Time Off</li>
+                                    <li>Cars</li>
+                                    <li>Loans</li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total Reward</td>
+                            <td>Non Financial Rewards</td>
+                            <td>
+                                <ul>
+                                    <li>Vacation</li>
+                                    <li>Training</li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </li>
     </ul>

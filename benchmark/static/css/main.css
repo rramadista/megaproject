@@ -85,7 +85,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
     .exec-box {
         margin: 4px;
         width: calc(50% - 8px);
-        height: 56px;
+        height: 96px;
     }
 }
 
@@ -98,15 +98,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .exec-item {
-    display: table-cell;
-    padding: 0 12px;
+    display: inline-table;
+    padding: 4px 12px;
     vertical-align: middle;
+    text-align: left;
 }
 
 .exec-item img {
     display: inline-block;
-    max-width: 100%;
-    height: auto;
-    max-height: 72px;
-    width: auto;
+    max-height: 96px;
 }
