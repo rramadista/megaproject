@@ -53,7 +53,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 /* Data Table */
-
 .dataTables_filter input {
     color: #616161;
 }
@@ -62,6 +61,52 @@ textarea.materialize-textarea:focus:not([readonly]) {
     color: #616161;
 }
 
-.intro {
-    background-size: contain;
+/* Executive CSS */
+.exec-container {
+    margin: 0 0 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.exec-box {
+    display: table;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-clip: padding-box
+}
+
+@media (max-width:991px) {
+    .exec-box {
+        margin: 4px;
+        width: calc(50% - 8px);
+        height: 56px;
+    }
+}
+
+@media (min-width:992px) {
+    .exec-box {
+        margin: 8px;
+        width: calc(25% - 16px);
+        height: 96px;
+    }
+}
+
+.exec-item {
+    display: table-cell;
+    padding: 0 12px;
+    vertical-align: middle;
+}
+
+.exec-item img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    max-height: 72px;
+    width: auto;
 }

@@ -158,7 +158,7 @@ IDR = moneyed.add_currency(
 _FORMATTER.add_sign_definition(
     'default',
     IDR,
-    prefix=u'Rp. '
+    prefix=u'Rp '
 )
 
 _FORMATTER.add_formatting_definition(
