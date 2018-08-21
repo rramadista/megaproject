@@ -64,3 +64,7 @@ M.Tooltip.init(tooltips, {});
 // Carousel
 var carousel = document.querySelectorAll('.carousel');
 M.Carousel.init(carousel, {});
+
+// Modals
+var modals = document.querySelectorAll('.modal');
+M.Modal.init(modals, {});

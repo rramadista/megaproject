@@ -29,6 +29,7 @@ class Bank(models.Model):
     website = models.URLField(max_length=100, blank=True, null=True)
     category = models.CharField(max_length=1, choices=OWNERSHIP, blank=True, null=True)
     group = models.CharField(max_length=1, choices=BUKU, blank=True, null=True)
+    periods = models.ManyToManyField('benchmark.DimDate', through='Indicator')
     
     def __str__(self):
         return self.bank_name
@@ -44,6 +45,25 @@ class Indicator(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.period, self.bank)
+
+# class Executive(models.Model):
+#     TITLE = (
+#         ('1', 'President Director'),
+#         ('2', 'Head of Foreign Bank Branch'),
+#         ('3', 'Vice President Director'),
+#         ('4', 'Director'),
+#         ('5', 'Compliance Director'),
+#         ('6', 'Executive')
+#     )
+#     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
+#     period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
+#     name = models.CharField(max_length=128)
+#     title = models.CharField(max_length=1, choices=TITLE, default='6')
+#     report_to = models.ForeignKey('benchmark.Executive', on_delete=models.CASCADE, blank=True, null=True)
+#     photo = models.ImageField(upload_to='exec', blank=True, null=True)
+
+#     def __str__(self):
+#         return '%s %s %s' % (self.period, self.bank, self.name)
 
 class DimDate(models.Model):
     full_date = models.DateField(default=timezone.now, null=True)
