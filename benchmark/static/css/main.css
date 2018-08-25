@@ -50,9 +50,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #ff6f00 !important;
     -webkit-box-shadow: 0 1px 0 0 #ff6f00 !important;
     box-shadow: 0 1px 0 0 #ff6f00 !important;
+    color: #616161 !important;
 }
 
 /* Data Table */
+
 .dataTables_filter input {
     color: #616161;
 }
@@ -62,6 +64,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 /* Executive CSS */
+
 .exec-container {
     margin: 0 0 20px;
     display: -webkit-box;
@@ -99,7 +102,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .exec-item {
     display: inline-table;
-    padding: 4px 12px;
+    padding: 5px 5px;
     vertical-align: middle;
     text-align: left;
 }
@@ -107,4 +110,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .exec-item img {
     display: inline-block;
     max-height: 96px;
+}
+
+.reward-table td {
+    padding: 5px 5px;
 }

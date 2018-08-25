@@ -68,3 +68,11 @@ M.Carousel.init(carousel, {});
 // Modals
 var modals = document.querySelectorAll('.modal');
 M.Modal.init(modals, {});
+
+// Date Picker
+var datepicker = document.querySelectorAll('.datepicker');
+M.Datepicker.init(datepicker, {});
+
+// Form Select
+const select = document.querySelectorAll('select');
+M.FormSelect.init(select, {});

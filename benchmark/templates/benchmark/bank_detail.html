@@ -53,7 +53,6 @@
             <b>{{ bank.institution_name }}</b>
         </a>
     </h3>
-    {{indicator}}
     <ul class="collapsible expandable">
         <li class="active">
             <div class="collapsible-header">
@@ -127,7 +126,7 @@
             <div class="collapsible-body">
                 <div class="row">
                     <div class="col s12 m6">
-                        <table class="highlight responsive-table">
+                        <table class="highlight">
                             <tr>
                                 <td width="250" class="grey-text">Non Operational Head Office</td>
                                 <td>1</td>
@@ -183,6 +182,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
         </li>
         <li>
             <div class="collapsible-header">
@@ -373,17 +373,6 @@
                     </div>
                     <div class="exec-box">
                         <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_YL.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Yuni Lastianto</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
                             <img src="{% static 'images/exec/MEGA_YB.png' %}" alt="">
                         </div>
                         <div class="exec-item">
@@ -404,6 +393,17 @@
                             <br>Director
                         </div>
                     </div>
+                    <div class="exec-box">
+                        <div class="exec-item">
+                            <img src="{% static 'images/exec/MEGA_YL.png' %}" alt="">
+                        </div>
+                        <div class="exec-item">
+                            <span class="deep-orange-text text-darken-4">
+                                <b>Yuni Lastianto</b>
+                            </span>
+                            <br>Director Compliance 
+                        </div>
+                    </div>
                 </div>
             </div>
         </li>
@@ -413,10 +413,45 @@
                     <i class="fas fa-handshake"></i>SHAREHOLDERS</h5>
             </div>
             <div class="collapsible-body">
-                <i class="flag-icon flag-icon-id flag-icon-squared"></i>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis consectetur non quam reprehenderit fugiat.
-                    Quae labore beatae id, nulla debitis laudantium molestiae esse natus voluptates, veritatis modi, praesentium
-                    maxime blanditiis.</span>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Shareholders</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="80%">PT Mega Corpora</td>
+                                    <td width="20%">57,82%</td>
+                                </tr>
+                                <tr>
+                                    <td>Public</td>
+                                    <td>42,18%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col s12 m6">
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Ultimate Shareholders</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="80%">Chairul Tanjung & Family</td>
+                                    <td>
+                                        <i class="flag-icon flag-icon-id flag-icon-squared"></i>
+                                    </td>
+                                    <td>Indonesia</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </li>
         <li>
@@ -426,28 +461,25 @@
             </div>
             <div class="collapsible-body">
                 <a class="waves-effect waves-light btn btn-small modal-trigger" href="#grading">Grading System</a>
-                <table class="highlight truncate">
+                <table class="highlight reward-table">
                     <thead>
                         <tr>
                             <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th width="20%">Definitions</th>
                             <th width="20%">Elements</th>
                             <th width="20%">Common Name</th>
-                            <th width="20%">Value</th>
-                            <th width="20%">Eligibility</th>
+                            <th width="30%">Value</th>
+                            <th width="30%">Eligibility</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <tr>
                             <td rowspan="16" width="1" class="grey"></td>
                             <td rowspan="14" width="1" class="deep-orange"></td>
                             <td rowspan="8" width="1" class="orange"></td>
                             <td rowspan="6" width="1" class="amber"></td>
-                            <td rowspan="6">Total Cash</td>
                             <td rowspan="3">Guaranted Cash</td>
                             <td>Basic Salary</td>
                             <td>Nett/Gross/Gross Up</td>
@@ -481,7 +513,6 @@
                         </tr>
                         <tr>
                             <td rowspan="2"></td>
-                            <td rowspan="2">Total Direct Compensation</td>
                             <td rowspan="2">Long Term Incentives</td>
                             <td>Stock Options</td>
                             <td></td>
@@ -495,7 +526,6 @@
                         <tr>
                             <td rowspan="6"></td>
                             <td rowspan="6"></td>
-                            <td rowspan="6">Total Remuneration</td>
                             <td rowspan="6">Benefits</td>
                             <td>Retirement Provision</td>
                             <td></td>
@@ -530,7 +560,6 @@
                             <td rowspan="2"></td>
                             <td rowspan="2"></td>
                             <td rowspan="2"></td>
-                            <td rowspan="2">Total Reward</td>
                             <td rowspan="2">Non Financial Rewards</td>
                             <td>Vacation</td>
                             <td></td>
@@ -544,13 +573,22 @@
                     </tbody>
                 </table>
 
+                <hr style="visibility:hidden">
+
+                <div class="left">
+                    <span class="new badge grey" data-badge-caption="Total Reward"></span>
+                    <span class="new badge deep-orange" data-badge-caption="Total Remuneration"></span>
+                    <span class="new badge orange" data-badge-caption="Total Direct Compensation"></span>
+                    <span class="new badge amber" data-badge-caption="Total Cash"></span>
+                </div>
+
                 <!-- Modal Grading System -->
                 <div id="grading" class="modal modal-fixed-footer">
                     <div class="modal-content">
                         <h4>GRADING
                             <b>SYSTEM</b>
                         </h4>
-                        <table class="highlight">
+                        <table class="highlight reward-table">
                             <thead class="amber">
                                 <tr>
                                     <th>Level</th>
@@ -663,5 +701,5 @@
             </div>
         </li>
     </ul>
-    </div>
-    {% endblock %}
+</div>
+{% endblock %}

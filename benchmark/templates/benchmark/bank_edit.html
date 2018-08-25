@@ -1,0 +1,44 @@
+{% extends 'benchmark/base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+    <h3>
+        <b>BANK NEW</b>
+    </h3>
+    {% comment %}
+    <form method="POST">{% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="save btn btn-small">Save
+            <i class="fas fa-save"></i>
+        </button>
+    </form> {% endcomment %}
+
+    <ul class="collapsible popout">
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-university"></i>INSTITUTIONAL DATA</h5>
+            </div>
+            <div class="collapsible-body">
+                {% comment %}
+                <form method="POST">{% csrf_token %} {{ form.as_p }}
+                    <button type="submit" class="save btn btn-small">Save
+                        <i class="fas fa-save"></i>
+                    </button>
+                </form> {% endcomment %}
+                <div class="row">
+                    <div class="col s12 m12 l9 input-field">
+                        <form method="POST">{% csrf_token %} {{ form.as_p }}
+                            <button type="submit" class="save btn btn-small">Save
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col s12 m6 l3 center hide-on-med-and-down">
+                        <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%">
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}
