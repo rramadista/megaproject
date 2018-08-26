@@ -22,11 +22,9 @@ class Bank(models.Model):
     bank_name = models.CharField(max_length=50)
     logo = models.ImageField(upload_to='logo', blank=True, null=True)
     tin = models.CharField(max_length=50, blank=True, null=True)
-    swift_code = models.CharField(max_length=50, blank=True, null=True)
     est_date = models.DateField(blank=True, null=True)
     forex_date = models.DateField(blank=True, null=True)
     listing_date = models.DateField(blank=True, null=True)
-    website = models.URLField(max_length=100, blank=True, null=True)
     category = models.CharField(max_length=1, choices=OWNERSHIP, blank=True, null=True)
     group = models.CharField(max_length=1, choices=BUKU, blank=True, null=True)
     periods = models.ManyToManyField('benchmark.DimDate', through='Indicator')
@@ -34,6 +32,20 @@ class Bank(models.Model):
     def __str__(self):
         return self.bank_name
 
+class Contact(models.Model):
+    bank = models.OneToOneField(Bank, on_delete=models.CASCADE, primary_key=True)
+    building_name = models.CharField(max_length=50, blank=True, null=True)
+    address_line = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    fax = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    website = models.URLField(max_length=50, blank=True, null=True)
+    swift_code = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return "%s Contact" % self.bank.bank_name
+    
 class Indicator(models.Model):
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
     period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
@@ -42,10 +54,10 @@ class Indicator(models.Model):
     lending = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     asset = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     headcount = models.PositiveIntegerField()
-    is_current = models.CharField(max_length=1, default="0")
+    is_current = models.BooleanField(max_length=1, default=False)
 
     def __str__(self):
-        return '%s %s' % (self.period, self.bank)
+        return '%s at %s' % (self.bank, self.period.calendar_year_qtr)
 
 class Executive(models.Model):
     TITLE = (
@@ -62,10 +74,10 @@ class Executive(models.Model):
     title = models.CharField(max_length=1, choices=TITLE, default='6')
     report_to = models.ForeignKey('benchmark.Executive', on_delete=models.PROTECT, blank=True, null=True)
     photo = models.ImageField(upload_to='exec', blank=True, null=True)
-    is_current = models.CharField(max_length=1, default="0")
+    is_current = models.BooleanField(max_length=1, default=False)
 
     def __str__(self):
-        return '%s %s %s' % (self.period, self.bank, self.name)
+        return '%s of %s at %s' % (self.name, self.bank, self.period.calendar_year)
 
 class DimDate(models.Model):
     full_date = models.DateField(default=timezone.now, null=True)
