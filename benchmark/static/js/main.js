@@ -58,21 +58,24 @@ M.Collapsible.init(collapsible, {
 });
 
 // Tooltips
-var tooltips = document.querySelector('.tooltipped');
+const tooltips = document.querySelector('.tooltipped');
 M.Tooltip.init(tooltips, {});
 
 // Carousel
-var carousel = document.querySelectorAll('.carousel');
+const carousel = document.querySelectorAll('.carousel');
 M.Carousel.init(carousel, {});
 
 // Modals
-var modals = document.querySelectorAll('.modal');
+const modals = document.querySelectorAll('.modal');
 M.Modal.init(modals, {});
 
 // Date Picker
-var datepicker = document.querySelectorAll('.datepicker');
+const datepicker = document.querySelectorAll('.datepicker');
 M.Datepicker.init(datepicker, {});
 
 // Form Select
 const select = document.querySelectorAll('select');
 M.FormSelect.init(select, {});
+
+// Dropify JS
+$('.dropify').dropify();

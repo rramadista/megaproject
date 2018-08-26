@@ -30,14 +30,11 @@ def bank_new(request):
     if request.method == "POST":
         form = RawBankForm(request.POST)
         if form.is_valid():
-            form.save()
-            # return HttpResponseRedirect('')
+            Bank.objects.create(form.cleaned_data)
+            return redirect('bank_detail', pk=bank.pk)
     else:
         form = RawBankForm()
     return render(request, 'benchmark/bank_edit.html', {'form': form})
-
-    # form = BankForm()
-    # return render(request, 'benchmark/bank_edit.html', {'form': form})
 
 def branch_list(request):
     return render(request, 'benchmark/branch_list.html', {})

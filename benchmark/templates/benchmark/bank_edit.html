@@ -4,12 +4,6 @@
     <h3>
         <b>BANK NEW</b>
     </h3>
-    {% comment %}
-    <form method="POST">{% csrf_token %} {{ form.as_p }}
-        <button type="submit" class="save btn btn-small">Save
-            <i class="fas fa-save"></i>
-        </button>
-    </form> {% endcomment %}
 
     <ul class="collapsible popout">
         <li>
@@ -18,22 +12,16 @@
                     <i class="fas fa-university"></i>INSTITUTIONAL DATA</h5>
             </div>
             <div class="collapsible-body">
-                {% comment %}
-                <form method="POST">{% csrf_token %} {{ form.as_p }}
-                    <button type="submit" class="save btn btn-small">Save
-                        <i class="fas fa-save"></i>
-                    </button>
-                </form> {% endcomment %}
                 <div class="row">
-                    <div class="col s12 m12 l9 input-field">
+                    <div class="col s12 m12 l6">
                         <form method="POST">{% csrf_token %} {{ form.as_p }}
-                            <button type="submit" class="save btn btn-small">Save
+                            <button type="submit" class="save btn btn-small right">Save
                                 <i class="fas fa-save"></i>
                             </button>
                         </form>
                     </div>
-                    <div class="col s12 m6 l3 center hide-on-med-and-down">
-                        <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%">
+                    <div class="col s12 m6 l6">
+                        {% comment %} {{ form.category }} {% endcomment %}
                     </div>
                 </div>
             </div>

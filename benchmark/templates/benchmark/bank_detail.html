@@ -82,7 +82,9 @@
                         </table>
                     </div>
                     <div class="col s12 m6 l3 center hide-on-med-and-down">
+                        {% if bank.logo %}
                         <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%">
+                        {% endif %}
                     </div>
                 </div>
             </div>

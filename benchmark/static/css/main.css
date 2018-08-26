@@ -34,6 +34,18 @@ h3 b {
     color: #616161 !important;
 }
 
+input,
+label,
+select,
+optgroup {
+    color: #616161 !important;
+}
+
+.dropdown-content li > a,
+.dropdown-content li > span {
+    color: #616161 !important;
+}
+
 input:not([type]):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
@@ -50,17 +62,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #ff6f00 !important;
     -webkit-box-shadow: 0 1px 0 0 #ff6f00 !important;
     box-shadow: 0 1px 0 0 #ff6f00 !important;
-    color: #616161 !important;
-}
-
-/* Data Table */
-
-.dataTables_filter input {
-    color: #616161;
-}
-
-.dataTables_filter label {
-    color: #616161;
 }
 
 /* Executive CSS */
