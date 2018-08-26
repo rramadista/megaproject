@@ -40,6 +40,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50, blank=True, null=True)
     fax = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(max_length=50, blank=True, null=True)
+    contact_center = models.CharField(max_length=50, blank=True, null=True)
     website = models.URLField(max_length=50, blank=True, null=True)
     swift_code = models.CharField(max_length=50, blank=True, null=True)
 

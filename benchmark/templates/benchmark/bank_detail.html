@@ -31,19 +31,26 @@
     </div>
     <div class="card-reveal">
         <p>
-            <span class="card-title grey-text text-darken-4">{{ bank.bank_name }}
+            <span class="card-title grey-text text-darken-4">
+                <b>{{ bank.bank_name }}</b>
                 <i class="fas fa-times grey-text right"></i>
             </span>
         </p>
         <p>
-            <i class="fas fa-address-book deep-orange-text text-darken-2"></i> Dummy Address
-            <br>Dummy Address Line 2</p>
+            <i class="fas fa-address-book deep-orange-text text-darken-2"></i>
+            {% if bank.contact.building_name %} {{ bank.contact.building_name }}, {% endif %} {{ bank.contact.address_line }}, {{ bank.contact.city}}</p>
         <p>
-            <i class="fas fa-phone deep-orange-text text-darken-2"></i> Dummy Phone</p>
+            <i class="fas fa-phone deep-orange-text text-darken-2"></i> {{ bank.contact.phone }}</p>
         <p>
-            <i class="fas fa-barcode deep-orange-text text-darken-2"></i> {{ bank.swift_code }}</p>
+            <i class="fas fa-fax deep-orange-text text-darken-2"></i> {{ bank.contact.fax }}</p>
         <p>
-            <i class="fas fa-globe-americas deep-orange-text text-darken-2"></i> {{ bank.website }}</p>
+            <i class="fas fa-barcode deep-orange-text text-darken-2"></i> {{ bank.contact.swift_code }}</p>
+        <p>
+            <i class="fas fa-globe-americas deep-orange-text text-darken-2"></i> {{ bank.contact.website }}</p>
+        <p>
+            <i class="fas fa-envelope deep-orange-text text-darken-2"></i> {{ bank.contact.email }}</p>
+        <p>
+            <i class="fas fa-user deep-orange-text text-darken-2"></i> {{ bank.contact.contact_center }}</p>
     </div>
 </div>
 
@@ -83,8 +90,7 @@
                     </div>
                     <div class="col s12 m6 l3 center hide-on-med-and-down">
                         {% if bank.logo %}
-                        <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%">
-                        {% endif %}
+                        <img src="{{ bank.logo.url }}" alt="" class="responsive-image" width="80%"> {% endif %}
                     </div>
                 </div>
             </div>
@@ -403,7 +409,7 @@
                             <span class="deep-orange-text text-darken-4">
                                 <b>Yuni Lastianto</b>
                             </span>
-                            <br>Director Compliance 
+                            <br>Director Compliance
                         </div>
                     </div>
                 </div>
