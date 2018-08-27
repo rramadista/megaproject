@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import Bank
 
 OWNERSHIP = (
@@ -10,30 +11,20 @@ OWNERSHIP = (
         ('6', 'Foreign Bank'),
     )
 
-class BankForm(forms.ModelForm):
+class BankModelForm(forms.ModelForm):
     
     class Meta:
         model = Bank
         fields = ('institution_name', 'bank_name')
 
-class RawBankForm(forms.Form):
+class BankForm(forms.Form):
     institution_name = forms.CharField(
         label='', 
-        max_length=100, 
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Institution Name"
-                }
-            )
+        widget=forms.TextInput(attrs={"placeholder": "Institution Name"})
         )
     bank_name = forms.CharField(
         label='',
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Bank Name"
-                }
-            )
+        widget=forms.TextInput(attrs={"placeholder": "Bank Name"})
         )
     est_date = forms.DateField(
         label='',
@@ -46,11 +37,7 @@ class RawBankForm(forms.Form):
         )
     website = forms.URLField(
         label='',
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Website"
-                }
-            )
+        widget=forms.TextInput(attrs={"placeholder": "Website"})
         )
     category = forms.MultipleChoiceField(
         label='',

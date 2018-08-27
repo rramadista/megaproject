@@ -1,8 +1,10 @@
 {% extends 'benchmark/base.html' %} {% load static %} {% block content %}
 
 <div class="container">
-    <h3>
-        <b>BANK NEW</b>
+    <h3 style="text-decoration:none">
+        <a href="{% url 'bank_list' %}">
+            <b>CREATE NEW BANK</b>
+        </a>
     </h3>
 
     <ul class="collapsible popout">

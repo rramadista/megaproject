@@ -41,9 +41,13 @@ optgroup {
     color: #616161 !important;
 }
 
-.dropdown-content li > a,
-.dropdown-content li > span {
+.dropdown-content li>a,
+.dropdown-content li>span {
     color: #616161 !important;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid #ff6f00 !important;
 }
 
 input:not([type]):focus:not([readonly]),
@@ -115,4 +119,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .reward-table td {
     padding: 5px 5px;
+}
+
+.dropify-font-upload:before,
+.dropify-wrapper .dropify-message span.file-icon:before {
+  content: '\2601' !important;
+}
+
+.dropify-font-file:before {
+  content: '\2601' !important;
 }
