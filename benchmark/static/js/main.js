@@ -79,3 +79,7 @@ M.FormSelect.init(select, {});
 
 // Dropify JS
 $('.dropify').dropify();
+
+$(document).ready(function () {
+    M.updateTextFields();
+});

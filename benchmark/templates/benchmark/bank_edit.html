@@ -3,7 +3,7 @@
 <div class="container">
     <h3 style="text-decoration:none">
         <a href="{% url 'bank_list' %}">
-            <b>CREATE NEW BANK</b>
+            CREATE OR UPDATE <b>BANK</b>
         </a>
     </h3>
 
@@ -14,16 +14,38 @@
                     <i class="fas fa-university"></i>INSTITUTIONAL DATA</h5>
             </div>
             <div class="collapsible-body">
+                <form method="POST">{% csrf_token %}
+                    <div class="row">
+                        <div class="col s12 m12 l6 input-field">
+                            {{ bank_form.as_p }}
+                        </div>
+                        <div class="col s12 m6 l6 input-field">
+                            {{ bank_form.bank_name }}
+                        </div>
+                    </div>
+                    <button type="submit" class="save btn btn-small right">Save
+                        <i class="fas fa-save"></i>
+                    </button>
+                </form>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header">
+                <h5>
+                    <i class="fas fa-address-card"></i>CONTACT</h5>
+            </div>
+            <div class="collapsible-body">
                 <div class="row">
                     <div class="col s12 m12 l6">
-                        <form method="POST">{% csrf_token %} {{ form.as_p }}
+                        {% comment %}
+                        <form method="POST">{% csrf_token %} {{ contact_form.as_p }}
                             <button type="submit" class="save btn btn-small right">Save
                                 <i class="fas fa-save"></i>
                             </button>
-                        </form>
+                        </form> {% endcomment %}
                     </div>
                     <div class="col s12 m6 l6">
-                        {% comment %} {{ form.category }} {% endcomment %}
+
                     </div>
                 </div>
             </div>

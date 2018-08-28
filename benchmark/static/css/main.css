@@ -129,3 +129,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .dropify-font-file:before {
   content: '\2601' !important;
 }
+
+.helptext {
+    color: #ff6f00;
+    font-size: 12px;
+}

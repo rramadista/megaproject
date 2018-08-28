@@ -2,51 +2,90 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Bank, Indicator
-from .forms import BankForm, BankModelForm
+from .models import Bank, Contact, Indicator
+from .forms import BankForm, ContactForm, BankModelForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'benchmark/index.html', {})
+    context = {}
+    return render(request, 'benchmark/index.html', context)
 
 def dashboard(request):
-    return render(request, 'benchmark/dashboard.html', {})
+    context = {}
+    return render(request, 'benchmark/dashboard.html', context)
 
 def reporting(request):
-    return render(request, 'benchmark/reporting.html', {})
+    context = {}
+    return render(request, 'benchmark/reporting.html', context)
 
 def analytics(request):
-    return render(request, 'benchmark/analytics.html', {})
+    context = {}
+    return render(request, 'benchmark/analytics.html', context)
 
 # BANK VIEWS
 def bank_list(request):
-    # banks = Bank.objects.order_by('-bank_name')
     banks = Bank.objects.all()
-    return render(request, 'benchmark/bank_list.html', {'banks': banks})
+    context = {'banks': banks}
+    return render(request, 'benchmark/bank_list.html', context)
 
-def bank_detail(request, pk):
+def bank_detail(request, pk=None):
     bank = get_object_or_404(Bank, pk=pk)
-    return render(request, 'benchmark/bank_detail.html', {'bank': bank})
+    context = {'bank': bank}
+    return render(request, 'benchmark/bank_detail.html', context)
 
 def bank_new(request):
-    if request.method == "POST":
-        form = BankForm(request.POST)
-        if form.is_valid():
-            # Bank.objects.create(form.cleaned_data)
-            return redirect('bank_list')
-    else:
-        form = BankForm()
-    return render(request, 'benchmark/bank_edit.html', {'form': form})
+    # bank_form = BankForm()
+    # if request.method == "POST":
+    #     bank_form = BankForm(request.POST)
+    #     if bank_form.is_valid():
+    #         print(bank_form.cleaned_data)
+    #         Bank.objects.create(**bank_form.cleaned_data)
+    #     else:
+    #         print(bank_form.errors)
+    # bank_form = BankForm()
 
-def bank_edit(request, pk):
+    bank_form = BankModelForm()
+    if request.method == "POST":
+        bank_form = BankModelForm(request.POST)
+        if bank_form.is_valid():
+            bank_form.save()
+    bank_form = BankModelForm()
+
+    context = {'bank_form': bank_form}
+    return render(request, 'benchmark/bank_edit.html', context)
+
+def bank_edit(request, pk=None):
+    # bank = get_object_or_404(Bank, pk=pk)
+    # initial = vars(bank)
+    # bank_form = BankForm(initial=initial)
+    # if request.method == "POST":
+    #     bank_form = BankForm(request.POST)
+    #     if bank_form.is_valid():
+    #         print(bank_form.cleaned_data)
+    #     else:
+    #         print(bank_form.errors)
+    # bank_form = BankForm()
+
+    # bank = get_object_or_404(Bank, pk=pk)
+    # initial = vars(bank)
+    # bank_form = BankForm(initial=initial)
+    # if request.method == "POST":
+    #     bank_form = BankModelForm(request.POST, initial=initial, instance=bank)
+    #     if bank_form.is_valid():
+    #         bank_form.save()
+    #         return redirect('bank_detail', pk=bank.pk)
+    # else:
+    #     bank_form = BankModelForm()
+
     bank = get_object_or_404(Bank, pk=pk)
-    # bank = request.GET.get(Bank, pk=pk)
-    # queryset = Bank.objects.all()
-    # form = BankForm(request.POST, initial=bank)
-    initial = vars(bank)
-    # form = BankForm(initial={'bank_name': 'Bank Karman'})
-    form = BankForm(initial=initial)
-    return render(request, 'benchmark/bank_edit.html', {'form': form})
+    bank_form = BankModelForm(request.POST or None, instance=bank)
+    if bank_form.is_valid():
+        bank = bank_form.save(commit=False)
+        bank.save()
+        return redirect('bank_detail', pk=bank.pk)
+
+    context = {'bank_form': bank_form, 'bank': bank}
+    return render(request, 'benchmark/bank_edit.html', context)
 
 # BRANCH VIEWS
 def branch_list(request):
