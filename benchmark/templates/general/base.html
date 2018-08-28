@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Benchmark Banking</title>
+    <link rel="shortcut icon" href="{% static 'icons/logo-mega.ico' %}" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Styleheet-->
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/flag-icon.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/all.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/datatables.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dropify.css' %}" />
+</head>
+
+<body>
+    {% include 'general/navbar.html' %}
+
+    {% include 'general/sidenav.html' %}
+    
+    {% block content %} {% endblock %}
+
+    {% include 'general/footer.html' %}
+
+    <!--JavaScript-->
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'js/chart.bundle.js' %}"></script>
+    <script src="{% static 'js/datatables.js' %}"></script>
+    <script src="{% static 'js/dropify.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!--ChartJS-->
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+                datasets: [{
+                    label: '# of Employees',
+                    data: [13358, 13181, 11923, 9864, 8660, 8986, 8574, 8647],
+                    backgroundColor: [
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(0, 0, 0, 0.5)',
+                        'rgba(255, 159, 64, 0.9)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
