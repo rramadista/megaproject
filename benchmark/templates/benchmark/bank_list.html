@@ -12,6 +12,7 @@
             <table id="mytable" class="compact order-column hover row-border responsive-table" style="width:100%">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Institution Name</th>
                         <th>Bank Name</th>
                         <th>Type</th>
@@ -22,6 +23,7 @@
                 <tbody>
                     {% for bank in banks %}
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ bank.institution_name }}</td>
                         <td>{{ bank.bank_name }}</td>
                         <td>{{ bank.get_category_display }}</td>
@@ -33,7 +35,7 @@
                             <a href="{% url 'bank_edit' pk=bank.pk %}" class="waves-effect waves-light btn-floating btn-small">
                                 <i class="far fa-edit"></i>
                             </a>
-                            <a href="#" class="waves-effect waves-light btn-floating btn-small red accent-2">
+                            <a href="#modal1" class="waves-effect waves-light btn-floating btn-small red accent-2 modal-trigger">
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </td>
@@ -44,5 +46,16 @@
         </div>
     </div>
 </section>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>Are you sure to delete?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
 {% endblock %}

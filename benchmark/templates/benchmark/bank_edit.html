@@ -21,11 +21,24 @@
                         </div>
                         <div class="col s12 m6 l6 input-field">
                             <p>{{ bank_form.bank_name }}</p>
+                            <p>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </p>
+                            <p>
+                                <button type="submit" class="save btn btn-small right">Save
+                                    <i class="fas fa-save"></i>
+                                </button>
+                            </p>
                         </div>
                     </div>
-                    <button type="submit" class="save btn btn-small right">Save
-                        <i class="fas fa-save"></i>
-                    </button>
                 </form>
             </div>
         </li>

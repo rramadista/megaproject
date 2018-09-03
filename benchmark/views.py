@@ -35,23 +35,11 @@ def bank_detail(request, pk=None):
     context = {'bank': bank}
     return render(request, 'benchmark/bank_detail.html', context)
 
-def bank_new(request):
-    # bank_form = BankForm()
-    # if request.method == "POST":
-    #     bank_form = BankForm(request.POST)
-    #     if bank_form.is_valid():
-    #         print(bank_form.cleaned_data)
-    #         Bank.objects.create(**bank_form.cleaned_data)
-    #     else:
-    #         print(bank_form.errors)
-    # bank_form = BankForm()
-
-    bank_form = BankModelForm()
-    if request.method == "POST":
-        bank_form = BankModelForm(request.POST)
-        if bank_form.is_valid():
-            bank_form.save()
-    bank_form = BankModelForm()
+def bank_add(request):
+    bank_form = BankModelForm(request.POST or None)
+    if bank_form.is_valid():
+        bank_form.save()
+        bank_form = BankModelForm()
 
     context = {'bank_form': bank_form}
     return render(request, 'benchmark/bank_edit.html', context)
@@ -88,6 +76,11 @@ def bank_edit(request, pk=None):
 
     context = {'bank_form': bank_form, 'bank': bank}
     return render(request, 'benchmark/bank_edit.html', context)
+
+def bank_delete(request, pk=None):
+    bank = get_object_or_404(Bank, pk=pk)
+    bank.delete()
+    return redirect('bank_list')
 
 # BRANCH VIEWS
 def branch_list(request):
