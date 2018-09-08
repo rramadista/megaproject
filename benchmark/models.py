@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
+from django.urls import reverse
 
 # Create your models here.
 class Bank(models.Model):
@@ -28,6 +29,9 @@ class Bank(models.Model):
     category = models.CharField(max_length=1, choices=OWNERSHIP, blank=True, null=True)
     group = models.CharField(max_length=1, choices=BUKU, blank=True, null=True)
     periods = models.ManyToManyField('benchmark.DimDate', through='Indicator')
+
+    def get_absolute_url(self):
+        return reverse('bank_detail', kwargs={'pk': self.pk})
     
     def __str__(self):
         return self.bank_name

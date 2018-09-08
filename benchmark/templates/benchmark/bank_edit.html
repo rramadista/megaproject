@@ -17,10 +17,10 @@
                 <form method="POST">{% csrf_token %}
                     <div class="row">
                         <div class="col s12 m12 l6 input-field">
-                            {{ bank_form.as_p }}
+                            <!-- {{ bank_form.as_p }} -->
                         </div>
-                        <div class="col s12 m6 l6 input-field">
-                            <p>{{ bank_form.bank_name }}</p>
+                        <div class="col s12 m12 l6 input-field">
+                            <!-- <p>{{ bank_form.bank_name }}</p>
                             <p>
                                 <div class="file-field input-field">
                                     <div class="btn">
@@ -31,7 +31,18 @@
                                         <input class="file-path validate" type="text">
                                     </div>
                                 </div>
-                            </p>
+                            </p> -->
+                            {{ form.non_field_errors}}
+                            <div class="fieldWrapper">
+                                {{ bank_form.institution_name.erros }}
+                                <label for="{{ bank_form.institution_name.id_for_label }}">Nama Institusi:</label>
+                                {{ bank_form.institution_name }}
+                            </div>
+                            <div class="fieldWrapper">
+                                {{ bank_form.bank_name.erros }}
+                                <label for="{{ bank_form.bank_name.id_for_label }}">Nama Bank:</label>
+                                {{ bank_form.bank_name }}
+                            </div>
                             <p>
                                 <button type="submit" class="save btn btn-small right">Save
                                     <i class="fas fa-save"></i>
