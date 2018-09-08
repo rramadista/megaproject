@@ -134,3 +134,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
     color: #ff6f00;
     font-size: 12px;
 }
+
+.login-panel {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 20%;
+}

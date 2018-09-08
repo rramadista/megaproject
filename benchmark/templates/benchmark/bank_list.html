@@ -35,7 +35,7 @@
                             <a href="{% url 'bank_edit' pk=bank.pk %}" class="waves-effect waves-light btn-floating btn-small">
                                 <i class="far fa-edit"></i>
                             </a>
-                            <a href="#modal1" class="waves-effect waves-light btn-floating btn-small red accent-2 modal-trigger">
+                            <a href="{% url 'bank_delete' pk=bank.pk %}" class="waves-effect waves-light btn-floating btn-small red accent-2 modal-trigger">
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </td>
@@ -51,10 +51,11 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Modal Header</h4>
-        <p>Are you sure to delete?</p>
+        <p>Are you sure you want to delete?</p>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="" class="modal-close waves-effect waves-light btn-flat">Cancel</a>
+        <a href="" class="modal-close waves-effect waves-light btn-small red accent-2">Yes</a>
     </div>
 </div>
 

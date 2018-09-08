@@ -1,5 +1,15 @@
 {% extends 'general/base.html' %} {% load static %} {% block content %}
-    <div class="container">
-        {{ form.as_p }}
+<div class="row login-panel">
+    <div class="col s12 m4">
+        <div class="card-panel">
+            <form action="" method="POST">{% csrf_token %}
+                <h4><b>Registration Form</b></h4>
+                {% include 'general/form_template.html' %}
+                <div class="right-align">
+                    <button class="btn btn-small" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 {% endblock %}

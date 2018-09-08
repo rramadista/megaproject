@@ -17,13 +17,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/datatables.css' %}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/dropify.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/sweetalert.css' %}" />
 </head>
 
 <body>
     {% include 'general/navbar.html' %}
 
     {% include 'general/sidenav.html' %}
-    
+
     {% block content %} {% endblock %}
 
     {% include 'general/footer.html' %}
@@ -34,6 +35,7 @@
     <script src="{% static 'js/chart.bundle.js' %}"></script>
     <script src="{% static 'js/datatables.js' %}"></script>
     <script src="{% static 'js/dropify.js' %}"></script>
+    <script src="{% static 'js/sweetalert.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
     <!--ChartJS-->

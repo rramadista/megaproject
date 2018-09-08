@@ -1,19 +1,64 @@
 from django.utils import timezone
-
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth import authenticate, login
+from django.contrib import messages # [debug/info/success/warning/error]
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 from .models import Bank, Contact, Indicator
-from .forms import BankForm, ContactForm
+from .forms import BankForm, ContactForm, UserForm
 
 # USER VIEWS
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        # form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, 'Account created for {{ username }}!')
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+        # form = UserRegistrationForm()
+
     context = {'form': form}
     return render(request, 'users/register.html', context)
+
+class UserFormView(View):
+    form_class = UserForm
+    template_name = 'users/registration_form.html'
+
+    # display blank form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    # process form data
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+
+            # cleaned data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+
+            # returns User objects if credentials are correct
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('home')
+
+        return render(request, self.template_name, {'form': form})
 
 # MENU VIEWS
 def index(request):
@@ -49,10 +94,14 @@ class BankDetailView(DetailView):
 class BankCreateView(CreateView):
     model = Bank
     fields = ['institution_name', 'bank_name']
+    
+class BankUpdateView(UpdateView):
+    model = Bank
+    fields = ['institution_name', 'bank_name', 'logo']
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+class BankDeleteView(DeleteView):
+    model = Bank
+    success_url = reverse_lazy('bank_list')
 
 def bank_list(request):
     banks = Bank.objects.all()
