@@ -1,4 +1,4 @@
-{% extends 'general/base.html' %} {% load static %} {% block content %}
+{% extends 'general/base.html' %} {% load static %} {% load humanize %} {% block content %}
 
 <div class="card intro">
     <div class="card-image waves-effect waves-block waves-light">
@@ -129,7 +129,7 @@
         <li>
             <div class="collapsible-header">
                 <h5>
-                    <i class="fas fa-building"></i>OFFICES</h5>
+                    <i class="fas fa-building"></i>NETWORKS & OFFICES</h5>
             </div>
             <div class="collapsible-body">
                 <div class="row">
@@ -430,14 +430,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for shareholder in bank.shareholder_set.all %}
+                                {% if not shareholder.is_ultimate %}
                                 <tr>
-                                    <td width="80%">PT Mega Corpora</td>
-                                    <td width="20%">57,82%</td>
+                                    <td width="80%">{{ shareholder.shareholder }}</td>
+                                    <td width="20%">{{ shareholder.share }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Public</td>
-                                    <td>42,18%</td>
-                                </tr>
+                                {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -449,13 +449,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for shareholder in bank.shareholder_set.all %}
+                                {% if shareholder.is_ultimate %}
                                 <tr>
-                                    <td width="80%">Chairul Tanjung & Family</td>
+                                    <td width="80%">{{ shareholder.shareholder }}</td>
                                     <td>
-                                        <i class="flag-icon flag-icon-id flag-icon-squared"></i>
+                                        <i class="flag-icon flag-icon-{{ shareholder.ultimate_country_id }} flag-icon-squared"></i>
                                     </td>
-                                    <td>Indonesia</td>
+                                    <td>{{ shareholder.ultimate_country_name }}</td>
                                 </tr>
+                                {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

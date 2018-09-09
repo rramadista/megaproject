@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages # [debug/info/success/warning/error]
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
@@ -29,8 +29,10 @@ def register(request):
     return render(request, 'users/register.html', context)
 
 class UserFormView(View):
-    form_class = UserForm
+    form_class = UserCreationForm
+    # form_class = UserForm
     template_name = 'users/registration_form.html'
+    # template_name = 'users/register.html'
 
     # display blank form
     def get(self, request):

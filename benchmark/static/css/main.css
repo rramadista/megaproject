@@ -130,8 +130,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
   content: '\2601' !important;
 }
 
-.helptext {
-    color: #ff6f00;
+.help-block {
+    color: #ff6f00 !important;
     font-size: 12px;
 }
 

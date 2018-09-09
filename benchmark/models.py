@@ -64,6 +64,23 @@ class Indicator(models.Model):
     def __str__(self):
         return '%s at %s' % (self.bank, self.period.calendar_year_qtr)
 
+class Shareholder(models.Model): 
+    HOLDER = (
+        ('1', 'Public'),
+        ('2', 'Individual'),
+        ('3', 'Institution'),
+    )
+    bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
+    shareholder = models.CharField(max_length=50)
+    share = models.FloatField(blank=True, null=True)
+    category = models.CharField(max_length=1, choices=HOLDER, blank=True, null=True)
+    is_ultimate = models.BooleanField(max_length=1, default=False)
+    ultimate_country_name = models.CharField(max_length=50, blank=True, null=True)
+    ultimate_country_id = models.CharField('2 Digit ISO', max_length=2, blank=True, null=True)
+
+    def __str__(self):
+        return '%s of %s' % (self.shareholder, self.bank)
+
 class Executive(models.Model):
     TITLE = (
         ('1', 'President Director'),

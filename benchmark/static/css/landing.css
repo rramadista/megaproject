@@ -72,8 +72,8 @@ h1 {
 
 .split.left {
     left: 0;
-    background: url('/benchmark/static/images/pexels-photo-908298.jpeg') center center no-repeat;
-    background-size: cover;
+    /* background: url('/benchmark/static/images/pexels-photo-908298.jpeg') center center no-repeat;
+    background-size: cover; */
 }
 
 .split.left:before {
@@ -86,8 +86,8 @@ h1 {
 
 .split.right {
     right: 0;
-    background: url('/benchmark/static/images/pexels-photo-296881.jpeg') center center no-repeat;
-    background-size: cover;
+    /* background: url('/benchmark/static/images/pexels-photo-296881.jpeg') center center no-repeat;
+    background-size: cover; */
 }
 
 .split.right:before {

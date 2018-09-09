@@ -10,7 +10,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     layout = Layout(
         'username', 'email', Row('password', 'password'),
-        Fieldset('Pesonal details', Row('first_name', 'last_name')))
+        Fieldset('Pesonal Details', Row('first_name', 'last_name')))
 
     class Meta:
         model = User
