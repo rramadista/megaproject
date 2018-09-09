@@ -17,16 +17,22 @@
                 <form method="POST">{% csrf_token %}
                     <div class="row">
                         <div class="col s12 m12 l6">
-                            {{ form.non_field_errors}}
-                            {% include 'general/form_template.html' %}
-                            <p>
-                                <button type="reset" class="save btn btn-small right">Reset
-                                    <i class="fas fa-undo"></i>
-                                </button>
-                                <button type="submit" class="save btn btn-small right">Save
-                                    <i class="fas fa-save"></i>
-                                </button>
-                            </p>
+                            <div class="card">
+                                {{ form.non_field_errors}}
+                                <div class="card-content">
+                                    {% include 'general/form_template.html' %} <!-- TEMPLATE -->
+                                </div>
+                                <div class="card-action">
+                                    <div class="right-align">
+                                        <button type="reset" class="btn btn-small">Reset
+                                            <i class="fas fa-undo"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-small">Save
+                                            <i class="fas fa-save"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col s12 m12 l6">
 

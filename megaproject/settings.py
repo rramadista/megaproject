@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'benchmark.apps.BenchmarkConfig',
     'djmoney',
+    'material',
 ]
 
 MIDDLEWARE = [

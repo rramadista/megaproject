@@ -93,7 +93,8 @@ class BankDetailView(DetailView):
     
 class BankCreateView(CreateView):
     model = Bank
-    fields = ['institution_name', 'bank_name']
+    form_class = BankForm
+    # fields = ['institution_name', 'bank_name']
     
 class BankUpdateView(UpdateView):
     model = Bank
