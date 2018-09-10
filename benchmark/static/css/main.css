@@ -50,6 +50,10 @@ optgroup {
     border-bottom: 1px solid #ff6f00 !important;
 }
 
+.input-field .prefix.active {
+    color: #ff6f00 !important;
+}
+
 input:not([type]):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
@@ -69,7 +73,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 /* Executive CSS */
-
 .exec-container {
     margin: 0 0 20px;
     display: -webkit-box;
@@ -123,16 +126,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .dropify-font-upload:before,
 .dropify-wrapper .dropify-message span.file-icon:before {
-  content: '\2601' !important;
+    content: '\2601' !important;
 }
 
 .dropify-font-file:before {
-  content: '\2601' !important;
+    content: '\2601' !important;
 }
 
 .help-block {
     color: #ff6f00 !important;
     font-size: 12px;
+    text-overflow: ellipsis;
 }
 
 .login-panel {
@@ -140,4 +144,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
     position: relative;
     left: 50%;
     top: 20%;
+}
+
+small.error {
+    position: relative;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    font-weight: bold;
+    text-overflow: ellipsis;
 }

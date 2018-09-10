@@ -170,3 +170,6 @@ _FORMATTER.add_formatting_definition(
     negative_sign="-", trailing_negative_sign="",
     rounding_method=ROUND_HALF_EVEN
 )
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'

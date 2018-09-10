@@ -1,30 +1,21 @@
 {% extends 'general/base.html' %} {% load static %} {% load material_form %} {% block content %}
 
-<style type="text/css">
-    .section h5 {
-        font-size: 1.2rem;
-        padding-bottom: 0.2rem;
-        border-bottom: 3px solid black;
-    }
-</style>
-
 <div class="container expand-on-small-only">
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
             <div class="card">
                 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
                     <div class="card-content">
-                        <span class="card-title grey-text text-darken-2">Registration Form</span>
+                        <span class="card-title grey-text text-darken-2">Log In</span>
                         {% form form=form %}
                         {% part form.username prefix %}<i class="fas fa-user-circle prefix"></i>{% endpart %}
-                        {% part form.email prefix %}<i class="fas fa-envelope prefix"></i>{% endpart %}
-                        {% part form.password1 prefix %}<i class="fas fa-unlock-alt prefix"></i>{% endpart %}
+                        {% part form.password prefix %}<i class="fas fa-unlock-alt prefix"></i>{% endpart %}
                         {% endform %}
                     </div>
                     <div class="card-action">
                         <div class="right-align">
-                            <small>Already Have An Account? <a href="{% url 'login' %}">Log In</a></small>
-                            <button class="waves-effect waves-light btn-small" type="submit">Submit
+                            <small>Need An Account? <a href="{% url 'register' %}">Sign Up Now</a></small>
+                            <button class="waves-effect waves-light btn-small" type="submit">Login
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </div>

@@ -9,13 +9,12 @@ from django.contrib import messages # [debug/info/success/warning/error]
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 from .models import Bank, Contact, Indicator
-from .forms import BankForm, ContactForm, UserForm
+from .forms import BankForm, ContactForm, UserForm, UserRegisterForm
 
 # USER VIEWS
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        # form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -23,13 +22,13 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-        # form = UserRegistrationForm()
 
     context = {'form': form}
     return render(request, 'users/register.html', context)
 
 class UserFormView(View):
-    form_class = UserCreationForm
+    form_class = UserRegisterForm
+    # form_class = UserCreationForm
     # form_class = UserForm
     template_name = 'users/registration_form.html'
     # template_name = 'users/register.html'
@@ -92,7 +91,7 @@ class BankListView(ListView):
 
 class BankDetailView(DetailView):
     model = Bank
-    
+
 class BankCreateView(CreateView):
     model = Bank
     form_class = BankForm

@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from .views import BankListView, BankDetailView, BankCreateView, BankUpdateView, BankDeleteView, UserFormView
 from . import views
 
@@ -21,7 +22,7 @@ urlpatterns = [
     path('register/', UserFormView.as_view(), name='register'),
     path('bank/', BankListView.as_view(), name='bank_list'),
     path('bank/<int:pk>/', BankDetailView.as_view(), name='bank_detail'),
-    path('bank/add', BankCreateView.as_view(), name='bank_add'),
+    path('bank/add', login_required(BankCreateView.as_view()), name='bank_add'),
     path('bank/<int:pk>/edit/', BankUpdateView.as_view(), name='bank_edit'),
     path('bank/<int:pk>/delete/', BankDeleteView.as_view(), name='bank_delete'),
 ]

@@ -58,7 +58,15 @@
     <li>
         <div class="divider"></div>
     </li>
+    {% if user.is_authenticated %}
     <li>
-        <a class="waves-effect waves-light btn-small">Logout</a>
+        <a class="waves-effect" href="{% url 'logout' %}">
+            <i class="fas fa-sign-out-alt"></i>Logout</a>
     </li>
+    {% else %}
+    <li>
+        <a class="waves-effect" href="{% url 'logout' %}">
+            <i class="fas fa-sign-in-alt"></i>Login</a>
+    </li>
+    {% endif %}
 </ul>

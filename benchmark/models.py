@@ -75,7 +75,7 @@ class Shareholder(models.Model):
     share = models.FloatField(blank=True, null=True)
     category = models.CharField(max_length=1, choices=HOLDER, blank=True, null=True)
     is_ultimate = models.BooleanField(max_length=1, default=False)
-    ultimate_country_name = models.CharField(max_length=50, blank=True, null=True)
+    ultimate_country_name = models.CharField('Country', max_length=50, blank=True, null=True)
     ultimate_country_id = models.CharField('2 Digit ISO', max_length=2, blank=True, null=True)
 
     def __str__(self):
