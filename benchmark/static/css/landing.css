@@ -1,7 +1,7 @@
 :root {
     --container-bg-color: #333;
-    --left-bg-color: rgba(223, 39, 39, 0.7);
-    --left-button-hover-color: rgba(161, 11, 11, 0.3);
+    --left-bg-color: rgba(245, 124, 0, 0.7);
+    --left-button-hover-color: rgba(230, 81, 0, 0.3);
     --right-bg-color: rgba(43, 43, 43, 0.8);
     --right-button-hover-color: rgba(92, 92, 92, 0.3);
     --hover-width: 75%;
@@ -72,8 +72,8 @@ h1 {
 
 .split.left {
     left: 0;
-    /* background: url('/benchmark/static/images/pexels-photo-908298.jpeg') center center no-repeat;
-    background-size: cover; */
+    background: url("/static/images/pexels-photo-908298.jpeg") center center no-repeat;
+    background-size: cover;
 }
 
 .split.left:before {
@@ -86,8 +86,8 @@ h1 {
 
 .split.right {
     right: 0;
-    /* background: url('/benchmark/static/images/pexels-photo-296881.jpeg') center center no-repeat;
-    background-size: cover; */
+    background: url("/static/images/pexels-photo-296881.jpeg") center center no-repeat;
+    background-size: cover;
 }
 
 .split.right:before {

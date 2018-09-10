@@ -30,6 +30,13 @@ h3 b {
     background-color: #ff6f00 !important;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    flex: 1 0 auto;
+}
+
 #dropdown {
     color: #616161 !important;
 }

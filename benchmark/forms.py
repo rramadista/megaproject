@@ -7,17 +7,6 @@ from .models import Bank, Contact
 from material import Layout, Fieldset, Row
 
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    layout = Layout(
-        'username', 'email', Row('password', 'password'),
-        Fieldset('Pesonal Details', Row('first_name', 'last_name')))
-
-    class Meta:
-        model = User
-        fields = '__all__'
-
-
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField()
@@ -28,7 +17,10 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'first_name', 'last_name']
+        fields = [
+            'username', 'email', 'password1', 'password2', 'first_name',
+            'last_name'
+        ]
 
 
 class BankForm(forms.ModelForm):

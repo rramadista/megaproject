@@ -1,9 +1,19 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 from djmoney.models.fields import MoneyField
 from django.urls import reverse
 
+
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='photo')
+
+    def __str__(self):
+        return self.user.username
+
+
 class Bank(models.Model):
     OWNERSHIP = (
         ('1', 'Stated Owned Bank'),
@@ -26,18 +36,21 @@ class Bank(models.Model):
     est_date = models.DateField(blank=True, null=True)
     forex_date = models.DateField(blank=True, null=True)
     listing_date = models.DateField(blank=True, null=True)
-    category = models.CharField(max_length=1, choices=OWNERSHIP, blank=True, null=True)
+    category = models.CharField(
+        max_length=1, choices=OWNERSHIP, blank=True, null=True)
     group = models.CharField(max_length=1, choices=BUKU, blank=True, null=True)
     periods = models.ManyToManyField('benchmark.DimDate', through='Indicator')
 
     def get_absolute_url(self):
         return reverse('bank_detail', kwargs={'pk': self.pk})
-    
+
     def __str__(self):
         return self.bank_name
 
+
 class Contact(models.Model):
-    bank = models.OneToOneField(Bank, on_delete=models.CASCADE, primary_key=True)
+    bank = models.OneToOneField(
+        Bank, on_delete=models.CASCADE, primary_key=True)
     building_name = models.CharField(max_length=50, blank=True, null=True)
     address_line = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
@@ -50,13 +63,16 @@ class Contact(models.Model):
 
     def __str__(self):
         return "%s Contact" % self.bank.bank_name
-    
+
+
 class Indicator(models.Model):
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
     period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
     pbt = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
-    funding = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
-    lending = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
+    funding = MoneyField(
+        max_digits=19, decimal_places=4, default_currency='IDR')
+    lending = MoneyField(
+        max_digits=19, decimal_places=4, default_currency='IDR')
     asset = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     headcount = models.PositiveIntegerField()
     is_current = models.BooleanField(max_length=1, default=False)
@@ -64,7 +80,8 @@ class Indicator(models.Model):
     def __str__(self):
         return '%s at %s' % (self.bank, self.period.calendar_year_qtr)
 
-class Shareholder(models.Model): 
+
+class Shareholder(models.Model):
     HOLDER = (
         ('1', 'Public'),
         ('2', 'Individual'),
@@ -73,33 +90,35 @@ class Shareholder(models.Model):
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
     shareholder = models.CharField(max_length=50)
     share = models.FloatField(blank=True, null=True)
-    category = models.CharField(max_length=1, choices=HOLDER, blank=True, null=True)
+    category = models.CharField(
+        max_length=1, choices=HOLDER, blank=True, null=True)
     is_ultimate = models.BooleanField(max_length=1, default=False)
-    ultimate_country_name = models.CharField('Country', max_length=50, blank=True, null=True)
-    ultimate_country_id = models.CharField('2 Digit ISO', max_length=2, blank=True, null=True)
+    ultimate_country_name = models.CharField(
+        'Country', max_length=50, blank=True, null=True)
+    ultimate_country_id = models.CharField(
+        '2 Digit ISO', max_length=2, blank=True, null=True)
 
     def __str__(self):
         return '%s of %s' % (self.shareholder, self.bank)
 
+
 class Executive(models.Model):
-    TITLE = (
-        ('1', 'President Director'),
-        ('2', 'Head of Foreign Bank Branch'),
-        ('3', 'Vice President Director'),
-        ('4', 'Director'),
-        ('5', 'Compliance Director'),
-        ('6', 'Others Executive')
-    )
+    TITLE = (('1', 'President Director'), ('2', 'Head of Foreign Bank Branch'),
+             ('3', 'Vice President Director'), ('4', 'Director'),
+             ('5', 'Compliance Director'), ('6', 'Others Executive'))
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
     period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     title = models.CharField(max_length=1, choices=TITLE, default='6')
-    report_to = models.ForeignKey('benchmark.Executive', on_delete=models.PROTECT, blank=True, null=True)
+    report_to = models.ForeignKey(
+        'benchmark.Executive', on_delete=models.PROTECT, blank=True, null=True)
     photo = models.ImageField(upload_to='exec', blank=True, null=True)
     is_current = models.BooleanField(max_length=1, default=False)
 
     def __str__(self):
-        return '%s of %s at %s' % (self.name, self.bank, self.period.calendar_year)
+        return '%s of %s at %s' % (self.name, self.bank,
+                                   self.period.calendar_year)
+
 
 class DimDate(models.Model):
     full_date = models.DateField(default=timezone.now, null=True)
@@ -109,7 +128,7 @@ class DimDate(models.Model):
     day_of_week = models.SmallIntegerField()
     day_name_of_week = models.CharField(max_length=11)
     day_of_month = models.SmallIntegerField()
-    day_of_year = models. SmallIntegerField()
+    day_of_year = models.SmallIntegerField()
     weekday_weekend = models.CharField(max_length=11)
     week_of_year = models.SmallIntegerField()
     month_name = models.CharField(max_length=11)

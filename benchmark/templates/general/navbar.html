@@ -24,8 +24,13 @@
                 </li>
                 <li>
                     <a class="dropdown-trigger valign-wrapper" href="#user" data-target="dropdown">
+                        {% if user.is_authenticated %}
                         <span style="padding-right: 10px">Welcome, {{ user.first_name }}</span>
                         <img class="circle right-aligned" src="{% static 'images/raden.jpg' %}" height="40px">
+                        {% else %}
+                        <span style="padding-right: 10px">Welcome, Guest</span>
+                        <img class="circle right-aligned" src="{% static 'images/anonymous.jpg' %}" height="40px">
+                        {% endif %}
                         <i class="fas fa-caret-square-down right"></i>
                     </a>
                 </li>
