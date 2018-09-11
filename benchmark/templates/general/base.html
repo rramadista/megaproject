@@ -21,13 +21,17 @@
 </head>
 
 <body>
-    {% include 'general/navbar.html' %}
+    <div class="site">
+        <div class="site-content">
+            {% include 'general/navbar.html' %}
 
-    {% include 'general/sidenav.html' %}
+            {% include 'general/sidenav.html' %}
 
-    {% block content %} {% endblock %}
+            {% block content %} {% endblock %}
+        </div>
 
-    {% include 'general/footer.html' %}
+        {% include 'general/footer.html' %}
+    </div>
 
     <!--JavaScript-->
     <script src="{% static 'js/materialize.js' %}"></script>

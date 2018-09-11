@@ -30,11 +30,14 @@ h3 b {
     background-color: #ff6f00 !important;
 }
 
-body {
+.site {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    flex: 1 0 auto;
+}
+
+.site-content {
+    flex: 1;
 }
 
 #dropdown {
