@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.contrib import messages  # [debug/info/success/warning/error]
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
@@ -19,7 +20,7 @@ class UserFormView(View):
 
     # display blank form
     def get(self, request):
-        form = self.form_class(None)
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     # process form data
@@ -31,14 +32,15 @@ class UserFormView(View):
 
             # cleaned data
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            password = form.cleaned_data['password1']
             user.set_password(password)
             user.save()
 
             # returns User objects if credentials are correct
             user = authenticate(username=username, password=password)
 
-            if user is not None:
+            # if user is not None:
+            if user.exist():
                 if user.is_active:
                     login(request, user)
                     return redirect('home')
@@ -77,22 +79,22 @@ class BankListView(ListView):
     model = Bank
     template_name = 'benchmark/bank_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'banks'
-    ordering = ['bank_name']
+    ordering = ['-bank_name'] # descending
 
 
 class BankDetailView(DetailView):
     model = Bank
 
 
-class BankCreateView(CreateView):
+class BankCreateView(LoginRequiredMixin, CreateView):
     model = Bank
     form_class = BankForm
-    # fields = ['institution_name', 'bank_name']
 
 
-class BankUpdateView(UpdateView):
+class BankUpdateView(LoginRequiredMixin, UpdateView):
     model = Bank
-    fields = ['institution_name', 'bank_name', 'logo']
+    form_class = BankForm
+    # fields = ['institution_name', 'bank_name', 'logo']
 
 
 class BankDeleteView(DeleteView):

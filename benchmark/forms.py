@@ -24,14 +24,15 @@ class UserRegisterForm(UserCreationForm):
 
 
 class BankForm(forms.ModelForm):
+
     class Meta:
         model = Bank
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['periods']
         widgets = {
             'logo': forms.FileInput(attrs={'class': 'dropify'}),
             'est_date': forms.DateInput(attrs={'class': 'datepicker'}),
         }
-        # labels = {'institution_name': '', 'bank_name': '', 'est_date': '', 'logo': ''}
 
 
 class ContactForm(forms.ModelForm):

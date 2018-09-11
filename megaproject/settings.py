@@ -173,3 +173,16 @@ _FORMATTER.add_formatting_definition(
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.bankmega.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'raden.ramadista@bankmega.com'
+EMAIL_HOST_PASSWORD = 'Kenzou#2018'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+
+ADMIN_EMAIL = "raden.ramadista@bankmega.com"
+DEFAULT_FROM_EMAIL = ADMIN_EMAIL
+SERVER_EMAIL = ADMIN_EMAIL
