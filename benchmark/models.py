@@ -29,13 +29,13 @@ class Bank(models.Model):
         ('3', '3'),
         ('4', '4'),
     )
-    institution_name = models.CharField(max_length=100)
-    bank_name = models.CharField(max_length=50)
+    institution_name = models.CharField('Institution Name', max_length=100)
+    bank_name = models.CharField('Bank Name', max_length=50)
     logo = models.ImageField(upload_to='logo', blank=True, null=True)
-    tin = models.CharField(max_length=50, blank=True, null=True)
-    est_date = models.DateField(blank=True, null=True)
-    forex_date = models.DateField(blank=True, null=True)
-    listing_date = models.DateField(blank=True, null=True)
+    tin = models.CharField('Tax Identification Number', max_length=50, blank=True, null=True)
+    est_date = models.DateField('Establishment Date', blank=True, null=True)
+    forex_date = models.DateField('Foreign Exchange Operations Date', blank=True, null=True)
+    listing_date = models.DateField('Listing Date', blank=True, null=True)
     category = models.CharField(max_length=1, choices=OWNERSHIP, blank=True, null=True)
     group = models.CharField(max_length=1, choices=BUKU, blank=True, null=True)
     periods = models.ManyToManyField('benchmark.DimDate', through='Indicator')
@@ -70,7 +70,7 @@ class Indicator(models.Model):
     funding = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     lending = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     asset = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
-    headcount = models.PositiveIntegerField()
+    headcount = models.PositiveIntegerField(blank=True, null=True)
     is_current = models.BooleanField(max_length=1, default=False)
 
     def __str__(self):

@@ -10,6 +10,10 @@ table.dataTable td.focus {
     box-shadow: inset 0 0 1px 2px #ff6f00 !important;
 }
 
+.row {
+    margin-bottom: 0 !important;
+}
+
 .btn,
 .btn-large,
 .btn-small {
@@ -80,6 +84,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #ff6f00 !important;
     -webkit-box-shadow: 0 1px 0 0 #ff6f00 !important;
     box-shadow: 0 1px 0 0 #ff6f00 !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+    border: 2px solid #ff6f00 !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+    background-color: #ff6f00 !important;
 }
 
 /* Executive CSS */
@@ -167,4 +182,41 @@ small.error {
     border-color: #f5c6cb;
     font-weight: bold;
     text-overflow: ellipsis;
+}
+
+/* Datepicker */
+.datepicker-date-display {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 auto;
+    -ms-flex: 1 auto;
+    flex: 1 auto;
+    background-color: #ff6f00 !important;
+    color: #fff;
+    padding: 20px 22px;
+    font-weight: 500;
+}
+
+.datepicker-table td.is-today {
+    color: #ff6f00 !important;
+}
+
+.datepicker-table td.is-selected {
+    background-color: #ff6f00 !important;
+    color: #fff !important;
+}
+
+.datepicker-day-button:focus {
+    background-color: rgba(255, 11, 0, 0.25);
+}
+
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done {
+    color: #ff6f00 !important;
+    padding: 0 1rem;
+}
+
+.fixed-action-btn {
+    bottom: 100px;
 }

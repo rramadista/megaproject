@@ -1,10 +1,11 @@
 from django import forms
+from django.forms import formset_factory, inlineformset_factory, modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Bank, Contact
-from material import Layout, Fieldset, Row
+from .models import Bank, Contact, Indicator
+from material import Layout, Fieldset, Row, Column, Span
 
 
 class UserRegisterForm(UserCreationForm):
@@ -24,14 +25,30 @@ class UserRegisterForm(UserCreationForm):
 
 
 class BankForm(forms.ModelForm):
+    category = forms.ChoiceField(
+        choices=Bank.OWNERSHIP,
+        label='Bank Category',
+        widget=forms.RadioSelect)
+    group = forms.ChoiceField(
+        choices=Bank.BUKU, label='BUKU', widget=forms.RadioSelect)
+    layout = Layout(
+        Fieldset(
+            "Institution Data", 'institution_name', 'bank_name',
+            Row(
+                Column('est_date', 'forex_date', 'listing_date'),
+                Column('tin', 'logo'))),
+        Fieldset("Bank Details", Row('category', 'group')),
+        Fieldset("Indicators"))
 
     class Meta:
         model = Bank
         # fields = '__all__'
         exclude = ['periods']
         widgets = {
-            'logo': forms.FileInput(attrs={'class': 'dropify'}),
+            # 'logo': forms.FileInput(attrs={'class': 'dropify'}),
             'est_date': forms.DateInput(attrs={'class': 'datepicker'}),
+            'forex_date': forms.DateInput(attrs={'class': 'datepicker'}),
+            'listing_date': forms.DateInput(attrs={'class': 'datepicker'}),
         }
 
 
@@ -39,3 +56,50 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
+
+
+class IndicatorForm(forms.ModelForm):
+    class Meta:
+        model = Indicator
+        # fields = ['pbt', 'asset', 'headcount']
+        fields = '__all__'
+
+    def clean_name(self):
+        # custom validation for the name field
+        pass
+
+
+IndicatorFormSet = inlineformset_factory(
+    Bank,
+    Indicator,
+    fields=(
+        'period',
+        'asset',
+    ),
+    extra=1,
+    fk_name='bank',
+    widgets={
+        # 'asset':
+        # forms.TextInput(attrs={
+        #     'class': 'form-control',
+        #     'placeholder': 'Enter Number of Asset Here'
+        # }),
+        'period': forms.DateInput(attrs={'class': 'datepicker'}),
+    })
+
+BankIndicatorFormSet = modelformset_factory(
+    Indicator,
+    fields=(
+        'period',
+        'asset',
+    ),
+    extra=1,
+    widgets={
+        'asset':
+        forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter Number of Asset Here'
+        }),
+        'period':
+        forms.DateInput(attrs={'class': 'datepicker'}),
+    })

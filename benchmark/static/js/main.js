@@ -77,6 +77,13 @@ M.Datepicker.init(datepicker, {});
 const select = document.querySelectorAll('select');
 M.FormSelect.init(select, {});
 
+// Floating Button
+const floating = document.querySelectorAll('.fixed-action-btn');
+M.FloatingActionButton.init(floating, {
+    // direction: 'left',
+    hoverEnabled: false
+});
+
 // Dropify JS
 $('.dropify').dropify();
 

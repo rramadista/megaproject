@@ -1,5 +1,6 @@
 from django.utils import timezone
-from django.urls import reverse_lazy
+from django.db import transaction
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -10,7 +11,7 @@ from django.contrib import messages  # [debug/info/success/warning/error]
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 from .models import Bank, Contact, Indicator
-from .forms import BankForm, ContactForm, UserRegisterForm
+from .forms import BankForm, ContactForm, UserRegisterForm, BankIndicatorFormSet, IndicatorFormSet
 
 
 # USER VIEWS
@@ -79,7 +80,7 @@ class BankListView(ListView):
     model = Bank
     template_name = 'benchmark/bank_list.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'banks'
-    ordering = ['-bank_name'] # descending
+    ordering = ['-bank_name']  # descending
 
 
 class BankDetailView(DetailView):
@@ -89,15 +90,34 @@ class BankDetailView(DetailView):
 class BankCreateView(LoginRequiredMixin, CreateView):
     model = Bank
     form_class = BankForm
+    success_url = reverse_lazy('bank_list')
+
+    def get_context_data(self, **kwargs):
+        data = super(BankCreateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['bankindicators'] = IndicatorFormSet(self.request.POST)
+        else:
+            data['bankindicators'] = IndicatorFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        bankindicators = context['bankindicators']
+        with transaction.atomic():
+            self.object = form.save()
+        if bankindicators.is_valid():
+            bankindicators.instance = self.object
+            bankindicators.save()
+
+        return super(BankCreateView, self).form_valid(form)
 
 
 class BankUpdateView(LoginRequiredMixin, UpdateView):
     model = Bank
     form_class = BankForm
-    # fields = ['institution_name', 'bank_name', 'logo']
 
 
-class BankDeleteView(DeleteView):
+class BankDeleteView(LoginRequiredMixin, DeleteView):
     model = Bank
     success_url = reverse_lazy('bank_list')
 

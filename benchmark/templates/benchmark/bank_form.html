@@ -1,20 +1,54 @@
 {% extends 'general/base.html' %} {% load static %} {% load material_form %} {% block content %}
 
+<style type="text/css">
+    .section h5 {
+        font-size: 1.2rem;
+        padding-bottom: 0.2rem;
+        border-bottom: 3px solid black;
+    }
+</style>
+
 <div class="container expand-on-small-only">
     <div class="row">
-        <div class="col s12 m12 l8 offset-l2">
-            <h3 style="text-decoration:none">
-                <a href="{% url 'bank_list' %}">
-                    CREATE OR UPDATE <b>BANK</b>
-                </a>
-            </h3>
+        <div class="col s12 m12 l10 offset-l1">
             <div class="card">
                 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
                     <div class="card-content">
                         <span class="card-title grey-text text-darken-2">Bank Form</span>
                         {% form form=form %}
                         {% endform %}
+
+                        <table class="table">
+                            {{ bankindicators.management_form }}
+
+                            {% for form in bankindicators.forms %}
+                            {% if forloop.first %}
+                            <thead>
+                                <tr>
+                                    {% for field in form.visible_fields %}
+                                    <th>{{ field.label|capfirst }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            {% endif %}
+                            <tr class="formset_row">
+                                {% for field in form.visible_fields %}
+                                <td>
+                                    {# Include the hidden fields in the form #}
+                                    {% if forloop.first %}
+                                    {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {{ field.errors.as_ul }}
+                                    {{ field }}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
                     </div>
+
                     <div class="card-action">
                         <div class="right-align">
                             <button class="waves-effect waves-light btn-small red" type="reset">Reset
@@ -31,120 +65,13 @@
     </div>
 </div>
 
-<!-- <ul class="collapsible popout">
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-university"></i>INSTITUTIONAL DATA</h5>
-            </div>
-            <div class="collapsible-body">
-                <form method="POST">{% csrf_token %}
-                    <div class="row">
-                        <div class="col s12 m12 l6">
-                            <div class="card">
-                                {{ form.non_field_errors}}
-                                <div class="card-content">
-                                    {% include 'general/form_template.html' %}
-                                </div>
-                                <div class="card-action">
-                                    <div class="right-align">
-                                        <button type="reset" class="btn btn-small">Reset
-                                            <i class="fas fa-undo"></i>
-                                        </button>
-                                        <button type="submit" class="btn btn-small">Save
-                                            <i class="fas fa-save"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m12 l6">
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-address-card"></i>CONTACT</h5>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                    <div class="col s12 m12 l6">
-
-                    </div>
-                    <div class="col s12 m6 l6">
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-chart-bar"></i>KEY FIGURES</h5>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                    <div class="col s12 m12 l6">
-
-                    </div>
-                    <div class="col s12 m6 l6">
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-building"></i>OFFICES</h5>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                    <div class="col s12 m12 l6">
-
-                    </div>
-                    <div class="col s12 m6 l6">
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-user-tie"></i>EXECUTIVES & PEOPLE</h5>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                    <div class="col s12 m12 l6">
-
-                    </div>
-                    <div class="col s12 m6 l6">
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                <h5>
-                    <i class="fas fa-handshake"></i>SHAREHOLDERS</h5>
-            </div>
-            <div class="collapsible-body">
-                <div class="row">
-                    <div class="col s12 m12 l6">
-
-                    </div>
-                    <div class="col s12 m6 l6">
-
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul> -->
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'add family member',
+        deleteText: 'remove',
+        prefix: 'familymember_set'
+    });
+</script>
 
 {% endblock %}
