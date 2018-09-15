@@ -11,7 +11,89 @@ from django.contrib import messages  # [debug/info/success/warning/error]
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 from .models import Bank, Contact, Indicator
-from .forms import BankForm, ContactForm, UserRegisterForm, BankIndicatorFormSet, IndicatorFormSet
+from .forms import BankForm, ContactForm, UserRegisterForm, BankIndicatorFormSet, BankFormSet
+
+
+# BANK VIEWS
+class BankListView(ListView):
+    model = Bank
+    # template_name = 'benchmark/bank_list.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'banks'
+    ordering = ['-bank_name']  # descending
+
+
+class BankDetailView(DetailView):
+    model = Bank
+
+
+class BankCreateView(LoginRequiredMixin, CreateView):
+    model = Bank
+    form_class = BankForm
+    success_url = reverse_lazy('bank_list')
+
+    def get_context_data(self, **kwargs):
+        data = super(BankCreateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['bankindicators'] = BankFormSet(self.request.POST)
+        else:
+            data['bankindicators'] = BankFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        bankindicators = context['bankindicators']
+        with transaction.atomic():
+            self.object = form.save()
+        if bankindicators.is_valid():
+            bankindicators.instance = self.object
+            bankindicators.save()
+
+        return super(BankCreateView, self).form_valid(form)
+
+
+class BankUpdateView(LoginRequiredMixin, UpdateView):
+    model = Bank
+    form_class = BankForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        bank_indicator_form = BankIndicatorFormSet(instance = self.object)
+        return self.render_to_response(self.get_context_data(form=form, bank_indicator_form=bank_indicator_form))
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        bank_indicator_form = BankIndicatorFormSet(self.request.POST, instance=self.object)
+
+        if (form.is_valid() and bank_indicator_form.is_valid()):
+            return self.form_valid(form, bank_indicator_form)
+        return self.form_invalid(form, bank_indicator_form)
+
+    def form_valid(self, form, bank_indicator_form):
+        self.object = form.save()
+        bank_indicator_form.instance = self.object
+        bank_indicator_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, bank_indicator_form):
+        return self.render_to_response(self.get_context_data(form=form, expense_line_item_form=bank_indicator_form))
+
+  
+class BankDeleteView(LoginRequiredMixin, DeleteView):
+    model = Bank
+    success_url = reverse_lazy('bank_list')
+
+
+# BRANCH VIEWS
+def branch_list(request):
+    return render(request, 'benchmark/branch_list.html', {})
+
+
+def sample(request):
+    return render(request, 'benchmark/sample.html', {})
 
 
 # USER VIEWS
@@ -73,59 +155,3 @@ def reporting(request):
 def analytics(request):
     context = {}
     return render(request, 'benchmark/analytics.html', context)
-
-
-# BANK VIEWS
-class BankListView(ListView):
-    model = Bank
-    template_name = 'benchmark/bank_list.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'banks'
-    ordering = ['-bank_name']  # descending
-
-
-class BankDetailView(DetailView):
-    model = Bank
-
-
-class BankCreateView(LoginRequiredMixin, CreateView):
-    model = Bank
-    form_class = BankForm
-    success_url = reverse_lazy('bank_list')
-
-    def get_context_data(self, **kwargs):
-        data = super(BankCreateView, self).get_context_data(**kwargs)
-        if self.request.POST:
-            data['bankindicators'] = IndicatorFormSet(self.request.POST)
-        else:
-            data['bankindicators'] = IndicatorFormSet()
-        return data
-
-    def form_valid(self, form):
-        context = self.get_context_data()
-        bankindicators = context['bankindicators']
-        with transaction.atomic():
-            self.object = form.save()
-        if bankindicators.is_valid():
-            bankindicators.instance = self.object
-            bankindicators.save()
-
-        return super(BankCreateView, self).form_valid(form)
-
-
-class BankUpdateView(LoginRequiredMixin, UpdateView):
-    model = Bank
-    form_class = BankForm
-
-
-class BankDeleteView(LoginRequiredMixin, DeleteView):
-    model = Bank
-    success_url = reverse_lazy('bank_list')
-
-
-# BRANCH VIEWS
-def branch_list(request):
-    return render(request, 'benchmark/branch_list.html', {})
-
-
-def sample(request):
-    return render(request, 'benchmark/sample.html', {})

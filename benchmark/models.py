@@ -96,6 +96,10 @@ class Shareholder(models.Model):
 
 
 class Executive(models.Model):
+    GENDER = (
+        ('M', 'Male'),
+        ('F', 'Female')
+    )
     TITLE = (
         ('1', 'President Director'),
         ('2', 'Head of Foreign Bank Branch'),
@@ -107,6 +111,7 @@ class Executive(models.Model):
     bank = models.ForeignKey('benchmark.Bank', on_delete=models.CASCADE)
     period = models.ForeignKey('benchmark.DimDate', on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
+    gender = models.CharField(max_length=1, choices=GENDER, default='M')
     title = models.CharField(max_length=1, choices=TITLE, default='6')
     report_to = models.ForeignKey('benchmark.Executive', on_delete=models.PROTECT, blank=True, null=True)
     photo = models.ImageField(upload_to='exec', blank=True, null=True)

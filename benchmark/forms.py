@@ -69,7 +69,7 @@ class IndicatorForm(forms.ModelForm):
         pass
 
 
-IndicatorFormSet = inlineformset_factory(
+BankIndicatorFormSet = inlineformset_factory(
     Bank,
     Indicator,
     fields=(
@@ -79,27 +79,13 @@ IndicatorFormSet = inlineformset_factory(
     extra=1,
     fk_name='bank',
     widgets={
-        # 'asset':
-        # forms.TextInput(attrs={
-        #     'class': 'form-control',
-        #     'placeholder': 'Enter Number of Asset Here'
-        # }),
-        'period': forms.DateInput(attrs={'class': 'datepicker'}),
+        'period': forms.SelectDateWidget(),
     })
 
-BankIndicatorFormSet = modelformset_factory(
+BankFormSet = modelformset_factory(
     Indicator,
-    fields=(
-        'period',
-        'asset',
-    ),
-    extra=1,
+    form=IndicatorForm,
+    formset=BankIndicatorFormSet,
     widgets={
-        'asset':
-        forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Enter Number of Asset Here'
-        }),
-        'period':
-        forms.DateInput(attrs={'class': 'datepicker'}),
+        'period': forms.DateInput(attrs={'class': 'datepicker'}),
     })

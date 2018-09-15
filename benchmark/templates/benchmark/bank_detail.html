@@ -11,7 +11,13 @@
                 <p class="medium-small grey-text">{{ bank.get_category_display }}</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
-                <h4 class="card-title grey-text text-darken-4">1,000+</h4>
+                <h4 class="card-title grey-text text-darken-4">
+                    {% for indicator in bank.indicator_set.all %}
+                    {% if indicator.is_current %}
+                    {{ indicator.headcount|intcomma }}
+                    {% endif%}
+                    {% endfor %}
+                </h4>
                 <p class="medium-small grey-text">Headcount Numbers</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
@@ -19,7 +25,13 @@
                 <p class="medium-small grey-text">Bank BUKU</p>
             </div>
             <div class="col s2 center-align hide-on-small-only">
-                <h4 class="card-title grey-text text-darken-4">Rp 50 T</h4>
+                <h4 class="card-title grey-text text-darken-4">
+                    Rp {% for indicator in bank.indicator_set.all %}
+                    {% if indicator.is_current %}
+                    {{ indicator.asset.amount|intword }}
+                    {% endif%}
+                    {% endfor %}
+                </h4>
                 <p class="medium-small grey-text">Total Asset</p>
             </div>
             <div class="col s1 right-align">
@@ -38,7 +50,8 @@
         </p>
         <p>
             <i class="fas fa-address-book deep-orange-text text-darken-2"></i>
-            {% if bank.contact.building_name %} {{ bank.contact.building_name }}, {% endif %} {{ bank.contact.address_line }}, {{ bank.contact.city}}</p>
+            {% if bank.contact.building_name %} {{ bank.contact.building_name }}, {% endif %} {{
+            bank.contact.address_line }}, {{ bank.contact.city}}</p>
         <p>
             <i class="fas fa-phone deep-orange-text text-darken-2"></i> {{ bank.contact.phone }}</p>
         <p>
@@ -323,7 +336,26 @@
                     </div>
                 </div> {% endcomment %} {% comment %} FlexBox {% endcomment %}
                 <div class="exec-container">
+                    {% for executive in bank.executive_set.all %}
+                    {% if executive.is_current %}
                     <div class="exec-box">
+                        <div class="exec-item">
+                            {% if executive.photo %}
+                            <img src="{{ executive.photo.url }}" alt="">
+                            {% else %}
+                            <img src="{% static 'images/exec/executive_m_default.png' %}" alt="">
+                            {% endif %}                            
+                        </div>
+                        <div class="exec-item">
+                            <span class="deep-orange-text text-darken-4">
+                                <b>{{ executive.name }}</b>
+                            </span>
+                            <br>{{ executive.get_title_display }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <!-- <div class="exec-box">
                         <div class="exec-item">
                             <img src="{% static 'images/exec/MEGA_KT.png' %}" alt="">
                         </div>
@@ -411,7 +443,7 @@
                             </span>
                             <br>Director Compliance
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </li>
