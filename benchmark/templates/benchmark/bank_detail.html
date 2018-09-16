@@ -50,8 +50,10 @@
         </p>
         <p>
             <i class="fas fa-address-book deep-orange-text text-darken-2"></i>
-            {% if bank.contact.building_name %} {{ bank.contact.building_name }}, {% endif %} {{
-            bank.contact.address_line }}, {{ bank.contact.city}}</p>
+            {% if bank.contact.building_name %}
+            {{ bank.contact.building_name }}, 
+            {% endif %} 
+            {{ bank.contact.address_line }}, {{ bank.contact.city}}</p>
         <p>
             <i class="fas fa-phone deep-orange-text text-darken-2"></i> {{ bank.contact.phone }}</p>
         <p>
@@ -136,7 +138,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <p class="grey-text">(dalam jutaan)</p>
+                <p class="grey-text">(in millions)</p>
             </div>
         </li>
         <li>
@@ -211,130 +213,6 @@
                     <i class="fas fa-user-tie"></i>EXECUTIVES & PEOPLE</h5>
             </div>
             <div class="collapsible-body">
-
-                {% comment %} Grid {% endcomment %} {% comment %}
-                <div class="row">
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_KT.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Kostaman Thayib</b>
-                                    </span>
-                                    <br>President Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_MM.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Martin Mulwanto</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_DZ.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Diza Larentie</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_MD.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Madi Darmadi</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_IE.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Indivara Erni</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_YL.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Yuni Lastianto</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_YB.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>YB Hariantono</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel" height="150">
-                            <div class="row valign-wrapper">
-                                <div class="col m4">
-                                    <img src="{% static 'images/exec/MEGA_GT.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col m8">
-                                    <span class="deep-orange-text text-darken-4">
-                                        <b>Guntur Trihandono</b>
-                                    </span>
-                                    <br>Director
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> {% endcomment %} {% comment %} FlexBox {% endcomment %}
                 <div class="exec-container">
                     {% for executive in bank.executive_set.all %}
                     {% if executive.is_current %}
@@ -342,8 +220,10 @@
                         <div class="exec-item">
                             {% if executive.photo %}
                             <img src="{{ executive.photo.url }}" alt="">
-                            {% else %}
+                            {% elif executive.gender == 'M' %}
                             <img src="{% static 'images/exec/executive_m_default.png' %}" alt="">
+                            {% else %}
+                            <img src="{% static 'images/exec/executive_f_default.png' %}" alt="">
                             {% endif %}                            
                         </div>
                         <div class="exec-item">
@@ -355,95 +235,6 @@
                     </div>
                     {% endif %}
                     {% endfor %}
-                    <!-- <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_KT.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Kostaman Thayib</b>
-                            </span>
-                            <br>President Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_MM.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Martin Mulwanto</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_DZ.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Diza Larentie</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_MD.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Madi Darmadi</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    {% comment %} Second Line {% endcomment %}
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_IE.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Indivara Erni</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_YB.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>YB Hariantono</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_GT.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Guntur Trihandono</b>
-                            </span>
-                            <br>Director
-                        </div>
-                    </div>
-                    <div class="exec-box">
-                        <div class="exec-item">
-                            <img src="{% static 'images/exec/MEGA_YL.png' %}" alt="">
-                        </div>
-                        <div class="exec-item">
-                            <span class="deep-orange-text text-darken-4">
-                                <b>Yuni Lastianto</b>
-                            </span>
-                            <br>Director Compliance
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </li>

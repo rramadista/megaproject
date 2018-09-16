@@ -81,7 +81,7 @@ M.FormSelect.init(select, {});
 const floating = document.querySelectorAll('.fixed-action-btn');
 M.FloatingActionButton.init(floating, {
     // direction: 'left',
-    hoverEnabled: false
+    hoverEnabled: true
 });
 
 // Dropify JS

@@ -71,7 +71,7 @@ class Indicator(models.Model):
     lending = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     asset = MoneyField(max_digits=19, decimal_places=4, default_currency='IDR')
     headcount = models.PositiveIntegerField(blank=True, null=True)
-    is_current = models.BooleanField(max_length=1, default=False)
+    is_current = models.BooleanField('Is Current', max_length=1, default=False)
 
     def __str__(self):
         return '%s at %s' % (self.bank, self.period.calendar_year_qtr)
@@ -87,7 +87,7 @@ class Shareholder(models.Model):
     shareholder = models.CharField(max_length=50)
     share = models.FloatField(blank=True, null=True)
     category = models.CharField(max_length=1, choices=HOLDER, blank=True, null=True)
-    is_ultimate = models.BooleanField(max_length=1, default=False)
+    is_ultimate = models.BooleanField('Ultimate Shareholder?', max_length=1, default=False)
     ultimate_country_name = models.CharField('Country', max_length=50, blank=True, null=True)
     ultimate_country_id = models.CharField('2 Digit ISO', max_length=2, blank=True, null=True)
 
